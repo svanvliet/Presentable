@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://schema.tenseventynine.com/PresentableServices/DocumentConverter/2011/05" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://schema.tenseventynine.com/PresentableServices/DocumentConverter/2011/05" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://schema.tenseventynine.com/PresentableServices/DocumentConverter/2011/05">
+      <s:element name="RenderAsPdf">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="docBinary" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileNameWithExt" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RenderAsPdfResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RenderAsPdfResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="RenderAsPdfSoapIn">
+    <wsdl:part name="parameters" element="tns:RenderAsPdf" />
+  </wsdl:message>
+  <wsdl:message name="RenderAsPdfSoapOut">
+    <wsdl:part name="parameters" element="tns:RenderAsPdfResponse" />
+  </wsdl:message>
+  <wsdl:portType name="DocumentConverterSoap">
+    <wsdl:operation name="RenderAsPdf">
+      <wsdl:input message="tns:RenderAsPdfSoapIn" />
+      <wsdl:output message="tns:RenderAsPdfSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DocumentConverterSoap" type="tns:DocumentConverterSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RenderAsPdf">
+      <soap:operation soapAction="http://schema.tenseventynine.com/PresentableServices/DocumentConverter/2011/05/RenderAsPdf" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DocumentConverterSoap12" type="tns:DocumentConverterSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RenderAsPdf">
+      <soap12:operation soapAction="http://schema.tenseventynine.com/PresentableServices/DocumentConverter/2011/05/RenderAsPdf" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DocumentConverter">
+    <wsdl:port name="DocumentConverterSoap" binding="tns:DocumentConverterSoap">
+      <soap:address location="http://localhost:55333/PresentableServices/DocumentConverter.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DocumentConverterSoap12" binding="tns:DocumentConverterSoap12">
+      <soap12:address location="http://localhost:55333/PresentableServices/DocumentConverter.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
