@@ -11,7 +11,7 @@ profile
 
 
 # Xcode Specific Files
-----------------------
+# --------------------
 build/*
 *.pbxuser
 *.mode2v3
@@ -21,3 +21,45 @@ build/*
 *~.nib
 xcuserdata
 project.xcworkspace
+
+# Compiled Source Binaries
+# ------------------------
+*.com
+*.class
+*.dll
+*.exe
+*.pdb
+*.dll.config
+*.cache
+*.suo
+
+# VS Upgrade stuff
+# ----------------
+UpgradeLog.XML
+_UpgradeReport_Files/
+
+# Directories 
+# -----------
+bin/
+obj/
+TestResults/
+
+# Web publish logs
+# ----------------
+*.Publish.xml
+
+# Compressed packages files
+# -------------------------
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases 
+# ------------------
+*.log
+*.sqlite
