@@ -9,7 +9,6 @@ profile
 *.swp
 *.out
 
-
 # Xcode Specific Files
 # --------------------
 build/*
@@ -31,7 +30,12 @@ project.xcworkspace
 *.pdb
 *.dll.config
 *.cache
+
+# VS General Stuff
+# ----------------
 *.suo
+*.user
+*.webtestresult
 
 # VS Upgrade stuff
 # ----------------
