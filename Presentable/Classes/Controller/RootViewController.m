@@ -108,9 +108,9 @@
         
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
-            //cell = [DocumentUITableViewCell createNewCustomCellFromNib];
+            cell = [DocumentUITableViewCell createNewCustomCellFromNib];
             //cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+            //cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
         }
 
         // Configure the cell.
@@ -235,27 +235,30 @@
         } 
         
         NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-        NSManagedObjectID *documentObjectID = (Document*)[[context persistentStoreCoordinator] managedObjectIDForURIRepresentation: [NSURL URLWithString: documentID]];
+        NSManagedObjectID *documentObjectID = [[context persistentStoreCoordinator] managedObjectIDForURIRepresentation: [NSURL URLWithString: documentID]];
         
         Document *document = (Document*)[context objectWithID: documentObjectID];
         
+        document.convertedFileType = @"pdf";
         
-        [document setValue:[document valueForKey:@"originalFileName"] forKey:@"convertedFileName"];
-        [document setValue:@"pdf" forKey:@"convertedFileType"];
+        //[document setValue:[document valueForKey:@"originalFileName"] forKey:@"convertedFileName"];
+        //[document setValue:@"pdf" forKey:@"convertedFileType"];
         
-        NSString *path = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.%@", document.convertedFileName, document.convertedFileType]];
+        NSString *path = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.%@", document.fileName, document.convertedFileType]];
         [[request responseData] writeToFile:path atomically:NO];
         
-        NSURL *convertedFileURL = [NSURL fileURLWithPath:path];
+        NSDictionary *documentFileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath: path error: nil]; // TODO: Implement exception handling
         
-        document.convertedFileURL = convertedFileURL;
-        document.conversionState = [NSNumber numberWithInt:COMPLETED];
+        document.convertedFileSizeInBytes = [documentFileAttributes objectForKey: NSFileSize];
+        document.convertedFileName = [path lastPathComponent];
+        document.conversionCompletedTimeStamp = [NSDate date];
+        document.convertedFileURL = [NSURL fileURLWithPath: path];
+        document.conversionState = [NSNumber numberWithInt: COMPLETED];
         
-        [context save: nil];
+        [context save: nil]; // TODO: Implement exception handling
         
-        progressView.progress = 0.0;
+        progressView.progress = 0.0; // TODO: Put this in a resetProgressIndicators method
         
-
         /*
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Request Finished" message:path delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertView autorelease];
@@ -310,11 +313,12 @@
     {
         NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
         
-        //DocumentUITableViewCell *docCell = (DocumentUITableViewCell*)cell;
-        //docCell.titleLabelText = [[managedObject valueForKey:@"fileName"] description];
+        DocumentUITableViewCell *docCell = (DocumentUITableViewCell*)cell;
+        docCell.titleLabelText = [[managedObject valueForKey:@"fileName"] description];
+        docCell.fileSizeLabelText = [[managedObject valueForKey:@"fileSizeInBytes"] description]; 
         
-        cell.detailTextLabel.text = [[managedObject valueForKey:@"fileName"] description];
-        cell.textLabel.text = [[managedObject valueForKey:@"fileName"] description];
+        //cell.detailTextLabel.text = [[managedObject valueForKey:@"fileName"] description];
+        //cell.textLabel.text = [[managedObject valueForKey:@"fileName"] description];
     }
 
     - (void)insertNewObject

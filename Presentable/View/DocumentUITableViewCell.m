@@ -13,69 +13,69 @@
 {
 }
 
--(NSString*) titleLabelText
-{
-    return titleLabel.text;
-}
+    -(NSString*) titleLabelText
+    {
+        return titleLabel.text;
+    }
 
--(void) setTitleLabelText:(NSString*)withText
-{	
-    titleLabel.text = withText;
-}
+    -(void) setTitleLabelText:(NSString*)withText
+    {	
+        titleLabel.text = withText;
+    }
 
--(NSString*) fileSizeLabelText
-{
-    return fileSizeLabel.text;
-}
+    -(NSString*) fileSizeLabelText
+    {
+        return fileSizeLabel.text;
+    }
 
--(void) setFileSizeLabelText:(NSString*)withText
-{	
-    fileSizeLabel.text = withText;
-}
+    -(void) setFileSizeLabelText:(NSString*)withText
+    {	
+        fileSizeLabel.text = withText;
+    }
 
--(IBOutlet) progressViewDelegate
-{
-    return progressView;
-}
+    -(IBOutlet) progressViewDelegate
+    {
+        return progressView;
+    }
 
-+ (DocumentUITableViewCell*) createNewCustomCellFromNib 
-{
-    NSArray* nibContents = [[NSBundle mainBundle]
-                            loadNibNamed:@"DocumentUITableViewCell" owner:self options:NULL];
-    NSEnumerator *nibEnumerator = [nibContents objectEnumerator];
-    DocumentUITableViewCell *customCell= nil;
-    NSObject* nibItem = nil;
-    while ( (nibItem = [nibEnumerator nextObject]) != nil) {
-        if ( [nibItem isKindOfClass: [DocumentUITableViewCell class]]) {
-            customCell = (DocumentUITableViewCell*) nibItem;
-            break; // we have a winner
+    + (DocumentUITableViewCell*) createNewCustomCellFromNib 
+    {
+        NSArray* nibContents = [[NSBundle mainBundle]
+                                loadNibNamed:@"DocumentUITableViewCell" owner:self options:NULL];
+        NSEnumerator *nibEnumerator = [nibContents objectEnumerator];
+        DocumentUITableViewCell *customCell= nil;
+        NSObject* nibItem = nil;
+        while ( (nibItem = [nibEnumerator nextObject]) != nil) {
+            if ( [nibItem isKindOfClass: [DocumentUITableViewCell class]]) {
+                customCell = (DocumentUITableViewCell*) nibItem;
+                break; // we have a winner
+            }
         }
+        return customCell;
     }
-    return customCell;
-}
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
+    - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+    {
+        self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+        if (self) {
+            // Initialization code
+        }
+        return self;
     }
-    return self;
-}
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
+    - (void)setSelected:(BOOL)selected animated:(BOOL)animated
+    {
+        [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
-}
+        // Configure the view for the selected state
+    }
 
-- (void)dealloc
-{
-    [titleLabel release];
-    [fileSizeLabel release];
-    [progressView release];
-    [super dealloc];
-}
+    - (void)dealloc
+    {
+        [titleLabel release];
+        [fileSizeLabel release];
+        [progressView release];
+        [super dealloc];
+    }
 
 @end

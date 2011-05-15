@@ -59,12 +59,17 @@
                                   insertNewObjectForEntityForName:@"Document" 
                                   inManagedObjectContext:self.managedObjectContext];
             
+            NSDictionary *documentFileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath: [url path] error: nil]; // TODO: Implement exception handling
+            
+            document.originalFileSizeInBytes = [documentFileAttributes objectForKey: NSFileSize];
+            document.addedTimeStamp = [NSDate date];
             document.conversionState = [NSNumber numberWithInt:PENDING];
             document.originalFileName = [[url path] lastPathComponent];
             document.originalFileType = [url pathExtension];
             document.originalFileURL = url;
             
             [self.managedObjectContext save:nil];
+            
         }
     }
 

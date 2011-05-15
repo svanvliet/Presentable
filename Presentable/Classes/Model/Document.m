@@ -29,12 +29,14 @@
 
     @dynamic originalFileName;
     @dynamic originalFileType;
-    @dynamic originalFileBinary;
+    @dynamic originalFileSizeInBytes;
+    @dynamic originalFileBinary; // Should remove; but issues with Xcode and git
     @dynamic originalFileURL;
 
     @dynamic convertedFileType;
     @dynamic convertedFileName;
-    @dynamic convertedFileBinary;
+    @dynamic convertedFileSizeInBytes;
+    @dynamic convertedFileBinary; // Should remove; but issues with Xcode and git
     @dynamic convertedFileURL;
 
     @dynamic conversionState;
@@ -67,6 +69,15 @@
             return self.convertedFileBinary;
         }
         return self.originalFileBinary;
+    }
+
+    -(NSNumber*) fileSizeInBytes
+    {
+        if (self.convertedFileSizeInBytes != nil)
+        {
+            return self.convertedFileSizeInBytes;
+        }
+        return self.originalFileSizeInBytes;
     }
 
     -(NSURL*) fileURL
