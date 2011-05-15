@@ -14,8 +14,8 @@
     IBOutlet UILabel *titleLabel;
     IBOutlet UILabel *fileSizeLabel;
     
-    @public
     IBOutlet UIProgressView *progressView;
+    IBOutlet UIImageView *thumbnailImageView;
     
     @private
     NSString *__titleLabelText;
@@ -26,6 +26,7 @@
 
 @property (nonatomic, retain) NSString * titleLabelText;
 @property (nonatomic, retain) NSString * fileSizeLabelText;
+@property (nonatomic, retain) UIImage * thumbnailImage;
 @property (readonly) IBOutlet UIProgressView * progressViewDelegate;
 
 

@@ -344,7 +344,7 @@
 
     - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
     {
-        NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        Document *document = (Document*)[self.fetchedResultsController objectAtIndexPath:indexPath];
         
         /*
         NSNumberFormatter *formatter = [[[NSNumberFormatter alloc] init] autorelease];
@@ -358,8 +358,13 @@
         
         DocumentUITableViewCell *docCell = (DocumentUITableViewCell*)cell;
         
-        docCell.titleLabelText = [[managedObject valueForKey:@"fileName"] description];
-        docCell.fileSizeLabelText = [[managedObject valueForKey:@"fileDescription"] description];
+        docCell.titleLabelText = document.fileName;
+        docCell.fileSizeLabelText = document.fileDescription;
+        
+        if ([document.conversionState intValue] == COMPLETED)
+        {
+        }
+        
         
         //docCell.fileSizeLabelText = [NSString stringWithFormat: @"Size: %@KB",
         //                             [formatter stringForObjectValue: fileSizeInBytes]]; 

@@ -23,9 +23,12 @@ DocumentConversionStateType;
 @interface Document : NSManagedObject 
 {
     @private
+    UIImage *__documentThumbnailImage;
 }
 
     +(NSString*) documentConversionStateTypeString:(DocumentConversionStateType)forEnumValue;
+
+    -(UIImage*) documentThumbnailImage;
 
     @property (nonatomic, retain) NSDate * addedTimeStamp;
 

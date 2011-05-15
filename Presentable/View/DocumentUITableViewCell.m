@@ -7,6 +7,7 @@
 //
 
 #import "DocumentUITableViewCell.h"
+#import <QuartzCore/CALayer.h>
 
 
 @implementation DocumentUITableViewCell
@@ -33,12 +34,20 @@
         fileSizeLabel.text = withText;
     }
 
-    -(IBOutlet) progressViewDelegate
+    -(UIImage*) thumbnailImage
     {
-        return progressView;
+        return thumbnailImageView.image;
     }
 
-+ (DocumentUITableViewCell*) createNewCustomCellFromNib: (NSString*)withReuseIdentifier 
+    -(void) setThumbnailImage:(UIImage *)thumbnailImage
+    {
+        if (thumbnailImageView != nil)
+        {
+            thumbnailImageView.image = thumbnailImage;
+        }
+    }
+
+    + (DocumentUITableViewCell*) createNewCustomCellFromNib: (NSString*)withReuseIdentifier 
     {
         NSArray* nibContents = [[NSBundle mainBundle]
                                 loadNibNamed:@"DocumentUITableViewCell" owner:self options:NULL];
@@ -52,6 +61,20 @@
             }
         }
         return customCell;
+    }
+
+    - (void) awakeFromNib
+    {
+        //CALayer *shadowLayer = [CALayer layer];
+        //shadowLayer.bounds = thumbnailImageView.bounds;
+        
+        thumbnailImageView.layer.shadowColor = [[UIColor blackColor] CGColor];
+        thumbnailImageView.layer.shadowRadius = 2.0f;
+        thumbnailImageView.layer.shadowOpacity = 0.5f;
+        thumbnailImageView.layer.shadowOffset = CGSizeMake(2, 2);
+        
+        
+        thumbnailImageView.clipsToBounds = NO;
     }
 
     - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier

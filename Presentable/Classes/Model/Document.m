@@ -96,6 +96,15 @@
         return self.originalFileURL;
     }
 
+    -(UIImage*) documentThumbnailImage
+    {
+        if (__documentThumbnailImage == nil)
+        {
+            
+        }
+        return __documentThumbnailImage;
+    }
+
     -(void)awakeFromInsert
     {
         

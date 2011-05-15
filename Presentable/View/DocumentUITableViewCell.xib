@@ -87,7 +87,7 @@
 							<object class="IBUILabel" id="722900180">
 								<reference key="NSNextResponder" ref="336192536"/>
 								<int key="NSvFlags">290</int>
-								<string key="NSFrame">{{103, 20}, {214, 21}}</string>
+								<string key="NSFrame">{{103, 20}, {204, 21}}</string>
 								<reference key="NSSuperview" ref="336192536"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="70237681"/>
@@ -108,12 +108,12 @@
 								</object>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">1</int>
-								<float key="IBUIMinimumFontSize">10</float>
+								<float key="IBUIMinimumFontSize">17</float>
 							</object>
 							<object class="IBUILabel" id="70237681">
 								<reference key="NSNextResponder" ref="336192536"/>
 								<int key="NSvFlags">290</int>
-								<string key="NSFrame">{{103, 42}, {214, 21}}</string>
+								<string key="NSFrame">{{103, 42}, {204, 21}}</string>
 								<reference key="NSSuperview" ref="336192536"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView"/>
@@ -139,7 +139,7 @@
 								</object>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">1</int>
-								<float key="IBUIMinimumFontSize">10</float>
+								<float key="IBUIMinimumFontSize">14</float>
 							</object>
 						</object>
 						<string key="NSFrameSize">{320, 83}</string>
@@ -191,6 +191,14 @@
 						<reference key="destination" ref="70237681"/>
 					</object>
 					<int key="connectionID">9</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">thumbnailImageView</string>
+						<reference key="source" ref="26514069"/>
+						<reference key="destination" ref="826008374"/>
+					</object>
+					<int key="connectionID">15</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -285,7 +293,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">14</int>
+			<int key="maxID">15</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -300,6 +308,7 @@
 							<string>fileSizeLabel</string>
 							<string>progressView</string>
 							<string>progressViewDelegate</string>
+							<string>thumbnailImageView</string>
 							<string>titleLabel</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -307,6 +316,7 @@
 							<string>UILabel</string>
 							<string>UIProgressView</string>
 							<string>UIProgressView</string>
+							<string>UIImageView</string>
 							<string>UILabel</string>
 						</object>
 					</object>
@@ -317,6 +327,7 @@
 							<string>fileSizeLabel</string>
 							<string>progressView</string>
 							<string>progressViewDelegate</string>
+							<string>thumbnailImageView</string>
 							<string>titleLabel</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -332,6 +343,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">progressViewDelegate</string>
 								<string key="candidateClassName">UIProgressView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">thumbnailImageView</string>
+								<string key="candidateClassName">UIImageView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">titleLabel</string>
