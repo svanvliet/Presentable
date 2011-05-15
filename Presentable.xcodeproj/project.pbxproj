@@ -44,6 +44,7 @@
 		40891AFA137A8A8B0064ED35 /* DocumentUITableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40891AF9137A8A8B0064ED35 /* DocumentUITableViewCell.xib */; };
 		408EF0A1137F946900FD9FD2 /* MainViewBackgroundPattern.gif in Resources */ = {isa = PBXBuildFile; fileRef = 408EF0A0137F946900FD9FD2 /* MainViewBackgroundPattern.gif */; };
 		408EF0A3137F965C00FD9FD2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408EF0A2137F965C00FD9FD2 /* QuartzCore.framework */; };
+		40FE966113808D35004E9569 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 40FE966013808D35004E9569 /* Entitlements.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +115,7 @@
 		40891AF9137A8A8B0064ED35 /* DocumentUITableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DocumentUITableViewCell.xib; path = View/DocumentUITableViewCell.xib; sourceTree = "<group>"; };
 		408EF0A0137F946900FD9FD2 /* MainViewBackgroundPattern.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = MainViewBackgroundPattern.gif; path = Resources/MainViewBackgroundPattern.gif; sourceTree = "<group>"; };
 		408EF0A2137F965C00FD9FD2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		40FE966013808D35004E9569 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Entitlements.plist; path = "Supporting Files/Entitlements.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +195,7 @@
 				405341E01377845A00185BF5 /* main.m */,
 				405341E11377845A00185BF5 /* Presentable-Info.plist */,
 				405341E21377845A00185BF5 /* Presentable-Prefix.pch */,
+				40FE966013808D35004E9569 /* Entitlements.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 				405341E31377845A00185BF5 /* InfoPlist.strings in Resources */,
 				40891AFA137A8A8B0064ED35 /* DocumentUITableViewCell.xib in Resources */,
 				408EF0A1137F946900FD9FD2 /* MainViewBackgroundPattern.gif in Resources */,
+				40FE966113808D35004E9569 /* Entitlements.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,6 +524,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -528,13 +533,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: tenseventynine, LLC";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C16E10BC-EFA9-40DA-805F-CAD3E67175E7";
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -543,6 +549,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = "";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -559,6 +566,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = "Presentable/Supporting Files/Entitlements.plist";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Presentable/Supporting Files/Presentable-Prefix.pch";

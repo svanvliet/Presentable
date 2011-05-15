@@ -10,22 +10,20 @@
 	<array>
 		<dict>
 			<key>CFBundleTypeName</key>
-            <string>powerpoint</string>
-            <key>LSItemContentTypes</key>
-            <array>
-                <string>org.openxmlformats.presentationml.presentation</string>
-                <string>com.microsoft.powerpoint.ppt</string>
-            </array>
+			<string>powerpoint</string>
 			<key>LSHandlerRank</key>
 			<string>Owner</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.openxmlformats.presentationml.presentation</string>
+				<string>com.microsoft.powerpoint.ppt</string>
+			</array>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
 	<string></string>
-	<key>UIInterfaceOrientation</key>
-	<string>UIInterfaceOrientationLandscapeRight</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.tenseventynine.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -35,19 +33,21 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>0.1</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
 	<array/>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>0.1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
 	<key>NSMainNibFile~ipad</key>
 	<string>MainWindow-iPad</string>
+	<key>UIInterfaceOrientation</key>
+	<string>UIInterfaceOrientationLandscapeRight</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
