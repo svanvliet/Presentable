@@ -32,13 +32,11 @@ DocumentConversionStateType;
     @property (nonatomic, retain) NSString * originalFileName;
     @property (nonatomic, retain) NSString * originalFileType;
     @property (nonatomic, retain) NSNumber * originalFileSizeInBytes;
-    @property (nonatomic, retain) NSData * originalFileBinary; // Should remove; but issues with Xcode and git
     @property (nonatomic, retain) NSURL * originalFileURL;
 
     @property (nonatomic, retain) NSString * convertedFileType;
     @property (nonatomic, retain) NSString * convertedFileName;
     @property (nonatomic, retain) NSNumber * convertedFileSizeInBytes;
-    @property (nonatomic, retain) NSData * convertedFileBinary; // Should remove; but issues with Xcode and git
     @property (nonatomic, retain) NSURL * convertedFileURL;
 
     @property (nonatomic, retain) NSNumber * conversionState;
@@ -49,7 +47,6 @@ DocumentConversionStateType;
     @property (readonly) NSString * fileName;
     @property (readonly) NSString * fileType;
     @property (readonly) NSNumber * fileSizeInBytes;
-    @property (readonly) NSData * fileBinary;
     @property (readonly) NSURL * fileURL;
 
 @end
