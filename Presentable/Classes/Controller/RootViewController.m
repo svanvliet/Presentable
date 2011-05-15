@@ -31,7 +31,6 @@
 
     @synthesize requestQueue;
 
-
     - (void)viewDidLoad
     {
         [super viewDidLoad];
@@ -105,6 +104,13 @@
         
         return [Document documentConversionStateTypeString: conversionState];
     }
+
+    /*
+    - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+    {
+        return [[UILabel alloc] init];
+    }
+    */
 
     -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
     {
