@@ -9,12 +9,14 @@
 #import "RootViewController.h"
 #import "Document.h"
 #import "ASIFormDataRequest.h"
+#import "ASINetworkQueue.h"
 #import "DocumentUITableViewCell.h"
+#import <QuartzCore/CALayer.h>
+#import <CoreGraphics/CGGeometry.h>
 
 @interface RootViewController
 (
 )
-
     - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 
     - (void)uploadFailed:(ASIHTTPRequest *)request;
@@ -27,13 +29,13 @@
     @synthesize fetchedResultsController=__fetchedResultsController;
     @synthesize managedObjectContext=__managedObjectContext;
 
-    @synthesize uploadRequest;
+    @synthesize requestQueue;
 
 
     - (void)viewDidLoad
     {
         [super viewDidLoad];
-        
+                
         // Set the Page title
         self.navigationItem.title = @"Conversion Queue";
         
@@ -43,7 +45,11 @@
         self.navigationItem.rightBarButtonItem = addButton;
         [addButton release];
         
+        self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+        
         // Setup UITableView sections    
+        
+        requestQueue = [[ASINetworkQueue alloc] init];
     }
 
     - (void)viewWillAppear:(BOOL)animated
@@ -100,6 +106,20 @@
         return [Document documentConversionStateTypeString: conversionState];
     }
 
+    -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+    {
+        //cell.contentView.backgroundColor = [UIColor whiteColor];
+        
+        /*
+        CALayer *layer = cell.contentView.layer;
+        
+        layer.borderColor = [[UIColor whiteColor] CGColor];
+        layer.borderWidth = 3.0f;
+        layer.cornerRadius = 3.0f; 
+        layer.backgroundColor = [[UIColor whiteColor] CGColor];
+        */
+    }
+
 
     // Customize the appearance of table view cells.
     - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -108,7 +128,9 @@
         
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
-            cell = [DocumentUITableViewCell createNewCustomCellFromNib];
+            
+            cell = [DocumentUITableViewCell createNewCustomCellFromNib: CellIdentifier];
+            
             //cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
             //cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
         }
@@ -173,19 +195,23 @@
                 document.conversionState = [NSNumber numberWithInt:ACTIVE];
                 [context save:nil];
                 
-                self.uploadRequest = [ASIFormDataRequest 
+                [ASIHTTPRequest setDefaultTimeOutSeconds: 60];
+                
+                ASIFormDataRequest *uploadRequest = [ASIFormDataRequest 
                                       requestWithURL: [NSURL URLWithString:@"http://dev.cloud.tenseventynine.com/PresentableServices/ConvertDocument"]];
                 
                 [uploadRequest setPostValue:indexPath forKey:@"documentIndexPath"];
                 [uploadRequest setPostValue:[[document objectID] URIRepresentation] forKey:@"documentID"];
                 [uploadRequest setFile:[[document originalFileURL] path] forKey:@"document"];
-                
-                [uploadRequest setDelegate: self];
-                [uploadRequest setDidFailSelector:@selector(uploadFailed:)];
-                [uploadRequest setDidFinishSelector:@selector(uploadFinished:)];
                 [uploadRequest setUploadProgressDelegate:progressView];
                 [uploadRequest setDownloadProgressDelegate:progressView];
-                [uploadRequest startAsynchronous];
+                
+                [requestQueue setDelegate: self];
+                [requestQueue setRequestDidFailSelector:@selector(uploadFailed:)];
+                [requestQueue setRequestDidFinishSelector:@selector(uploadFinished:)];
+                
+                [requestQueue addOperation: uploadRequest];
+                [requestQueue go];
                 
                 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
                 [uploadRequest setShouldContinueWhenAppEntersBackground:YES];
@@ -306,6 +332,7 @@
         [__fetchedResultsController release];
         [__managedObjectContext release];
         [progressView release];
+        [requestQueue release];
         [super dealloc];
     }
 
@@ -313,9 +340,23 @@
     {
         NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
         
+        /*
+        NSNumberFormatter *formatter = [[[NSNumberFormatter alloc] init] autorelease];
+        [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+        [formatter setCurrencySymbol: @""];
+        [formatter setMaximumFractionDigits: 0];
+        
+        NSNumber *fileSizeInBytes = [[managedObject valueForKey:@"fileSizeInBytes"] description];
+        fileSizeInBytes = [NSNumber numberWithFloat: [fileSizeInBytes intValue] / 1000 ];
+        */
+        
         DocumentUITableViewCell *docCell = (DocumentUITableViewCell*)cell;
+        
         docCell.titleLabelText = [[managedObject valueForKey:@"fileName"] description];
-        docCell.fileSizeLabelText = [[managedObject valueForKey:@"fileSizeInBytes"] description]; 
+        docCell.fileSizeLabelText = [[managedObject valueForKey:@"fileDescription"] description];
+        
+        //docCell.fileSizeLabelText = [NSString stringWithFormat: @"Size: %@KB",
+        //                             [formatter stringForObjectValue: fileSizeInBytes]]; 
         
         //cell.detailTextLabel.text = [[managedObject valueForKey:@"fileName"] description];
         //cell.textLabel.text = [[managedObject valueForKey:@"fileName"] description];
@@ -333,14 +374,19 @@
         //NSNumber *randomNumber = [NSNumber numberWithUnsignedInteger: random() % 4];
         
         NSURL *fileURL = [[NSBundle mainBundle] URLForResource:@"SamplePresentation" withExtension:@"pptx"];
-        NSData *fileBinary = [NSData dataWithContentsOfURL:fileURL];
+        
+        
+        NSError *fileAccessError = nil;
+        NSDictionary *documentFileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath: [fileURL path] error: &fileAccessError]; // TODO: Implement exception handling
+        
         
         [newManagedObject setValue:fileURL forKey:@"originalFileURL"];
-        [newManagedObject setValue:fileBinary forKey:@"originalFileBinary"];
+        [newManagedObject setValue:[documentFileAttributes objectForKey: NSFileSize] forKey:@"originalFileSizeInBytes"];
         [newManagedObject setValue:@"pptx" forKey:@"originalFileType"];
                 
         [newManagedObject setValue:[[fileURL path] lastPathComponent] forKey:@"originalFileName"];
         [newManagedObject setValue:[NSNumber numberWithInt:PENDING] forKey:@"conversionState"];
+        [newManagedObject setValue:[NSDate date] forKey:@"addedTimeStamp"];
         
         // Save the context.
         NSError *error = nil;
@@ -379,6 +425,7 @@
         
         // Edit the sort key as appropriate.
         NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"conversionState" ascending:YES];
+        //NSSortDescriptor *sortDescriptorDate = [[NSSortDescriptor alloc] initWithKey:@"addedTimeStamp" ascending:NO];
         NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
         
         [fetchRequest setSortDescriptors:sortDescriptors];
@@ -391,8 +438,9 @@
         
         [aFetchedResultsController release];
         [fetchRequest release];
-        //[sortDescriptor release];
-        //[sortDescriptors release];
+        [sortDescriptor release];
+        //[sortDescriptorDate release];
+        [sortDescriptors release];
 
         NSError *error = nil;
         if (![self.fetchedResultsController performFetch:&error])

@@ -62,11 +62,29 @@
 
     -(NSNumber*) fileSizeInBytes
     {
-        if (self.convertedFileSizeInBytes != nil)
+        if ([self.convertedFileSizeInBytes intValue] > 0)
         {
             return self.convertedFileSizeInBytes;
         }
         return self.originalFileSizeInBytes;
+    }
+
+    -(NSString*) fileDescription
+    {
+        NSNumberFormatter *numberFormatter = [[[NSNumberFormatter alloc] init] autorelease];
+        [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+        [numberFormatter setCurrencySymbol: @""];
+        [numberFormatter setMaximumFractionDigits: 0];
+        
+        NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+        [dateFormatter setDateStyle: NSDateFormatterShortStyle];
+        [dateFormatter setTimeStyle: NSDateFormatterShortStyle];
+        
+        if ([self.convertedFileSizeInBytes intValue] > 0)
+        {
+            return [NSString stringWithFormat: @"Converted %@  |  File Size: %dKB", [dateFormatter stringFromDate: self.conversionCompletedTimeStamp], [self.convertedFileSizeInBytes intValue] / 1000];
+        }
+        return [NSString stringWithFormat: @"Added %@  |  File Size: %dKB", [dateFormatter stringFromDate: self.addedTimeStamp], [self.originalFileSizeInBytes intValue] / 1000];
     }
 
     -(NSURL*) fileURL

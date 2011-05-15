@@ -8,16 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
-#import "ASIFormDataRequest.h"
+#import "ASINetworkQueue.h"
+#import "DocumentUITableViewCell.h"
 
 @interface RootViewController : UITableViewController <NSFetchedResultsControllerDelegate, UIDocumentInteractionControllerDelegate, ASIHTTPRequestDelegate> 
 {
     IBOutlet UIProgressView *progressView;
-    ASIFormDataRequest *uploadRequest;
 }
 
     @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
     @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
-    @property (nonatomic, retain) ASIFormDataRequest *uploadRequest;
+    @property (nonatomic, retain) ASINetworkQueue *requestQueue;
 
 @end

@@ -22,7 +22,7 @@
     NSString *__fileSizeLabelText;
 }
 
-+(DocumentUITableViewCell*) createNewCustomCellFromNib;
++(DocumentUITableViewCell*) createNewCustomCellFromNib: (NSString*)withReuseIdentifier;
 
 @property (nonatomic, retain) NSString * titleLabelText;
 @property (nonatomic, retain) NSString * fileSizeLabelText;

@@ -38,7 +38,7 @@
         return progressView;
     }
 
-    + (DocumentUITableViewCell*) createNewCustomCellFromNib 
++ (DocumentUITableViewCell*) createNewCustomCellFromNib: (NSString*)withReuseIdentifier 
     {
         NSArray* nibContents = [[NSBundle mainBundle]
                                 loadNibNamed:@"DocumentUITableViewCell" owner:self options:NULL];
@@ -47,7 +47,7 @@
         NSObject* nibItem = nil;
         while ( (nibItem = [nibEnumerator nextObject]) != nil) {
             if ( [nibItem isKindOfClass: [DocumentUITableViewCell class]]) {
-                customCell = (DocumentUITableViewCell*) nibItem;
+                customCell = (DocumentUITableViewCell*)nibItem;
                 break; // we have a winner
             }
         }

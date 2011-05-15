@@ -47,6 +47,7 @@ DocumentConversionStateType;
     @property (readonly) NSString * fileName;
     @property (readonly) NSString * fileType;
     @property (readonly) NSNumber * fileSizeInBytes;
+    @property (readonly) NSString * fileDescription;
     @property (readonly) NSURL * fileURL;
 
 @end

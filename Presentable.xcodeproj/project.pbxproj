@@ -42,6 +42,8 @@
 		40534202137789E000185BF5 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 40534201137789E000185BF5 /* libz.1.2.3.dylib */; };
 		40891AF6137A81100064ED35 /* DocumentUITableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40891AF5137A81100064ED35 /* DocumentUITableViewCell.m */; };
 		40891AFA137A8A8B0064ED35 /* DocumentUITableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40891AF9137A8A8B0064ED35 /* DocumentUITableViewCell.xib */; };
+		408EF0A1137F946900FD9FD2 /* MainViewBackgroundPattern.gif in Resources */ = {isa = PBXBuildFile; fileRef = 408EF0A0137F946900FD9FD2 /* MainViewBackgroundPattern.gif */; };
+		408EF0A3137F965C00FD9FD2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408EF0A2137F965C00FD9FD2 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +112,8 @@
 		40891AF4137A81100064ED35 /* DocumentUITableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocumentUITableViewCell.h; path = View/DocumentUITableViewCell.h; sourceTree = "<group>"; };
 		40891AF5137A81100064ED35 /* DocumentUITableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocumentUITableViewCell.m; path = View/DocumentUITableViewCell.m; sourceTree = "<group>"; };
 		40891AF9137A8A8B0064ED35 /* DocumentUITableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DocumentUITableViewCell.xib; path = View/DocumentUITableViewCell.xib; sourceTree = "<group>"; };
+		408EF0A0137F946900FD9FD2 /* MainViewBackgroundPattern.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = MainViewBackgroundPattern.gif; path = Resources/MainViewBackgroundPattern.gif; sourceTree = "<group>"; };
+		408EF0A2137F965C00FD9FD2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				408EF0A3137F965C00FD9FD2 /* QuartzCore.framework in Frameworks */,
 				404CB1D013778A9500D6773E /* CoreGraphics.framework in Frameworks */,
 				40534202137789E000185BF5 /* libz.1.2.3.dylib in Frameworks */,
 				405341FF137789BD00185BF5 /* MobileCoreServices.framework in Frameworks */,
@@ -161,6 +166,7 @@
 				404CB1CF13778A9500D6773E /* CoreGraphics.framework */,
 				4018C0361375010A00DEEB44 /* Foundation.framework */,
 				405341FE137789BD00185BF5 /* MobileCoreServices.framework */,
+				408EF0A2137F965C00FD9FD2 /* QuartzCore.framework */,
 				405341FC137789B300185BF5 /* SystemConfiguration.framework */,
 				4018C0341375010A00DEEB44 /* UIKit.framework */,
 			);
@@ -308,6 +314,7 @@
 		405341D91377840100185BF5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				408EF0A0137F946900FD9FD2 /* MainViewBackgroundPattern.gif */,
 				405341DA1377841400185BF5 /* SamplePresentation.pptx */,
 			);
 			name = Resources;
@@ -400,6 +407,7 @@
 				405341DE1377845100185BF5 /* RootViewController.xib in Resources */,
 				405341E31377845A00185BF5 /* InfoPlist.strings in Resources */,
 				40891AFA137A8A8B0064ED35 /* DocumentUITableViewCell.xib in Resources */,
+				408EF0A1137F946900FD9FD2 /* MainViewBackgroundPattern.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
