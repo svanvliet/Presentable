@@ -69,9 +69,9 @@
         //shadowLayer.bounds = thumbnailImageView.bounds;
         
         thumbnailImageView.layer.shadowColor = [[UIColor blackColor] CGColor];
-        thumbnailImageView.layer.shadowRadius = 2.0f;
+        thumbnailImageView.layer.shadowRadius = 3.0f;
         thumbnailImageView.layer.shadowOpacity = 0.5f;
-        thumbnailImageView.layer.shadowOffset = CGSizeMake(2, 2);
+        thumbnailImageView.layer.shadowOffset = CGSizeMake(0, 0);
         
         
         thumbnailImageView.clipsToBounds = NO;

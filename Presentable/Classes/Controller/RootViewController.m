@@ -360,10 +360,7 @@
         
         docCell.titleLabelText = document.fileName;
         docCell.fileSizeLabelText = document.fileDescription;
-        
-        if ([document.conversionState intValue] == COMPLETED)
-        {
-        }
+        docCell.thumbnailImage = [document thumbnailImage];
         
         
         //docCell.fileSizeLabelText = [NSString stringWithFormat: @"Size: %@KB",
