@@ -58,7 +58,6 @@
 										<int key="NSvFlags">266</int>
 										<string key="NSFrame">{{3, 22}, {468, 9}}</string>
 										<reference key="NSSuperview" ref="374285105"/>
-										<reference key="NSNextKeyView"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 									</object>
@@ -100,21 +99,6 @@
 				<float key="IBUISectionHeaderHeight">22</float>
 				<float key="IBUISectionFooterHeight">22</float>
 				<reference key="IBUITableHeaderView" ref="470291522"/>
-			</object>
-			<object class="IBUIView" id="541573812">
-				<reference key="NSNextResponder"/>
-				<int key="NSvFlags">294</int>
-				<string key="NSFrameSize">{320, 30}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSNextKeyView"/>
-				<object class="NSColor" key="IBUIBackgroundColor">
-					<int key="NSColorSpace">3</int>
-					<bytes key="NSWhite">MQA</bytes>
-					<object class="NSColorSpace" key="NSCustomColorSpace">
-						<int key="NSID">2</int>
-					</object>
-				</object>
-				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -205,11 +189,6 @@
 						<reference key="object" ref="507464678"/>
 						<reference key="parent" ref="374285105"/>
 					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">20</int>
-						<reference key="object" ref="541573812"/>
-						<reference key="parent" ref="0"/>
-					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -223,7 +202,6 @@
 					<string>19.IBPluginDependency</string>
 					<string>2.IBEditorWindowLastContentRect</string>
 					<string>2.IBPluginDependency</string>
-					<string>20.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -233,7 +211,6 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{144, 609}, {320, 247}}</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>

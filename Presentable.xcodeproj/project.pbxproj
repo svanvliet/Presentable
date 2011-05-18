@@ -17,6 +17,9 @@
 		4018C0681375010A00DEEB44 /* PresentableTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 4018C0671375010A00DEEB44 /* PresentableTests.h */; };
 		4018C06A1375010A00DEEB44 /* PresentableTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4018C0691375010A00DEEB44 /* PresentableTests.m */; };
 		4018C07B1375024A00DEEB44 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4018C0791375024A00DEEB44 /* MainWindow-iPad.xib */; };
+		401F35511383AD8C001FD11D /* MainViewBackground01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 401F35501383AD8C001FD11D /* MainViewBackground01.jpg */; };
+		401F35541383BA09001FD11D /* Presentable Icon iPhone 4 Retina.png in Resources */ = {isa = PBXBuildFile; fileRef = 401F35531383BA09001FD11D /* Presentable Icon iPhone 4 Retina.png */; };
+		401F35561383BA77001FD11D /* Presentable Icon iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 401F35551383BA77001FD11D /* Presentable Icon iPad.png */; };
 		404CB1D013778A9500D6773E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 404CB1CF13778A9500D6773E /* CoreGraphics.framework */; };
 		404CB1E71377919A00D6773E /* Presentable.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 404CB1E51377919A00D6773E /* Presentable.xcdatamodeld */; };
 		405341AB137782B300185BF5 /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = 405341AA137782B300185BF5 /* Document.m */; };
@@ -67,6 +70,9 @@
 		4018C0671375010A00DEEB44 /* PresentableTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PresentableTests.h; sourceTree = "<group>"; };
 		4018C0691375010A00DEEB44 /* PresentableTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PresentableTests.m; sourceTree = "<group>"; };
 		4018C07A1375024A00DEEB44 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "iPad/en.lproj/MainWindow-iPad.xib"; sourceTree = "<group>"; };
+		401F35501383AD8C001FD11D /* MainViewBackground01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = MainViewBackground01.jpg; path = Resources/MainViewBackground01.jpg; sourceTree = "<group>"; };
+		401F35531383BA09001FD11D /* Presentable Icon iPhone 4 Retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Presentable Icon iPhone 4 Retina.png"; sourceTree = "<group>"; };
+		401F35551383BA77001FD11D /* Presentable Icon iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Presentable Icon iPad.png"; sourceTree = "<group>"; };
 		404CB1CB13778A2600D6773E /* Presentable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Presentable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		404CB1CD13778A2600D6773E /* PresentableTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PresentableTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		404CB1CF13778A9500D6773E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -151,6 +157,8 @@
 		4018C0251375010900DEEB44 = {
 			isa = PBXGroup;
 			children = (
+				401F35551383BA77001FD11D /* Presentable Icon iPad.png */,
+				401F35531383BA09001FD11D /* Presentable Icon iPhone 4 Retina.png */,
 				4018C03C1375010A00DEEB44 /* Presentable */,
 				4018C0601375010A00DEEB44 /* PresentableTests */,
 				4018C0331375010A00DEEB44 /* Frameworks */,
@@ -317,6 +325,7 @@
 		405341D91377840100185BF5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				401F35501383AD8C001FD11D /* MainViewBackground01.jpg */,
 				408EF0A0137F946900FD9FD2 /* MainViewBackgroundPattern.gif */,
 				405341DA1377841400185BF5 /* SamplePresentation.pptx */,
 			);
@@ -412,6 +421,9 @@
 				40891AFA137A8A8B0064ED35 /* DocumentUITableViewCell.xib in Resources */,
 				408EF0A1137F946900FD9FD2 /* MainViewBackgroundPattern.gif in Resources */,
 				40FE966113808D35004E9569 /* Entitlements.plist in Resources */,
+				401F35511383AD8C001FD11D /* MainViewBackground01.jpg in Resources */,
+				401F35541383BA09001FD11D /* Presentable Icon iPhone 4 Retina.png in Resources */,
+				401F35561383BA77001FD11D /* Presentable Icon iPad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

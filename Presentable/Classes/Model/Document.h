@@ -24,6 +24,9 @@ DocumentConversionStateType;
 {
     @private
     UIImage *__thumbnailImage;
+    
+    NSDateFormatter *dateFormatter;
+    NSNumberFormatter *numberFormatter;
 }
 
     +(NSString*) documentConversionStateTypeString:(DocumentConversionStateType)forEnumValue;

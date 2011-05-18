@@ -24,6 +24,11 @@
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
 	<string></string>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>Presentable Icon iPhone 4 Retina.png</string>
+		<string>Presentable Icon iPad.png</string>
+	</array>
 	<key>CFBundleIdentifier</key>
 	<string>com.tenseventynine.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>

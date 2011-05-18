@@ -30,6 +30,7 @@
     @synthesize managedObjectContext=__managedObjectContext;
 
     @synthesize requestQueue;
+    @synthesize documentCell;
 
     - (void)viewDidLoad
     {
@@ -132,10 +133,14 @@
     {
         static NSString *CellIdentifier = @"Cell";
         
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        DocumentUITableViewCell *cell = (DocumentUITableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
         if (cell == nil) {
             
-            cell = [DocumentUITableViewCell createNewCustomCellFromNib: CellIdentifier];
+            
+            [[NSBundle mainBundle] loadNibNamed:@"DocumentUITableViewCell" owner:self options:NULL];
+            cell = documentCell;
+            documentCell = nil;
             
             //cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
             //cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];

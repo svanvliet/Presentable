@@ -39,7 +39,9 @@
         
         //RootViewController *rootViewController = (RootViewController *)[self.navigationController topViewController];
         
-        [[self window] setBackgroundColor: [UIColor colorWithPatternImage:[UIImage imageWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"MainViewBackgroundPattern" ofType:@"gif"]]]];
+        [self.window setBackgroundColor: [UIColor lightGrayColor]];
+        
+        //[[self window] setBackgroundColor: [UIColor colorWithPatternImage:[UIImage imageWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"MainViewBackground01" ofType:@"jpg"]]]];
         
         self.window.rootViewController = self.navigationController;
         [self.window makeKeyAndVisible];

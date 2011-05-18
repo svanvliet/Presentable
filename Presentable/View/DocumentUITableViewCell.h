@@ -14,20 +14,16 @@
     IBOutlet UILabel *titleLabel;
     IBOutlet UILabel *fileSizeLabel;
     
-    IBOutlet UIProgressView *progressView;
     IBOutlet UIImageView *thumbnailImageView;
+    IBOutlet UIView *itemView;
     
-    @private
-    NSString *__titleLabelText;
-    NSString *__fileSizeLabelText;
 }
 
-+(DocumentUITableViewCell*) createNewCustomCellFromNib: (NSString*)withReuseIdentifier;
+    +(DocumentUITableViewCell*) createNewCustomCellFromNib: (NSString*)withReuseIdentifier;
 
-@property (nonatomic, retain) NSString * titleLabelText;
-@property (nonatomic, retain) NSString * fileSizeLabelText;
-@property (nonatomic, retain) UIImage * thumbnailImage;
-@property (readonly) IBOutlet UIProgressView * progressViewDelegate;
+    @property (nonatomic, retain) NSString * titleLabelText;
+    @property (nonatomic, retain) NSString * fileSizeLabelText;
+    @property (nonatomic, retain) UIImage * thumbnailImage;
 
 
 @end

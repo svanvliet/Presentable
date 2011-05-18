@@ -19,5 +19,7 @@
     @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
     @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
     @property (nonatomic, retain) ASINetworkQueue *requestQueue;
+    @property (nonatomic, assign) IBOutlet DocumentUITableViewCell *documentCell;
+
 
 @end

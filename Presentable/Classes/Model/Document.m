@@ -71,20 +71,32 @@
 
     -(NSString*) fileDescription
     {
-        NSNumberFormatter *numberFormatter = [[[NSNumberFormatter alloc] init] autorelease];
-        [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
-        [numberFormatter setCurrencySymbol: @""];
-        [numberFormatter setMaximumFractionDigits: 0];
+        if (!numberFormatter)
+        {
+            numberFormatter = [[NSNumberFormatter alloc] init];
+            [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+            [numberFormatter setCurrencySymbol: @""];
+            [numberFormatter setMaximumFractionDigits: 0];
+        }
         
-        NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
-        [dateFormatter setDateStyle: NSDateFormatterShortStyle];
-        [dateFormatter setTimeStyle: NSDateFormatterShortStyle];
+        if (!dateFormatter)
+        {
+            dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateStyle: NSDateFormatterShortStyle];
+            [dateFormatter setTimeStyle: NSDateFormatterShortStyle];
+        }
         
+        NSString *description = nil;
         if ([self.convertedFileSizeInBytes intValue] > 0)
         {
-            return [NSString stringWithFormat: @"Converted %@  |  File Size: %dKB", [dateFormatter stringFromDate: self.conversionCompletedTimeStamp], [self.convertedFileSizeInBytes intValue] / 1000];
+            description = [NSString stringWithFormat: @"Converted %@  |  File Size: %dKB", [dateFormatter stringFromDate: self.conversionCompletedTimeStamp], [self.convertedFileSizeInBytes intValue] / 1000];
         }
-        return [NSString stringWithFormat: @"Added %@  |  File Size: %dKB", [dateFormatter stringFromDate: self.addedTimeStamp], [self.originalFileSizeInBytes intValue] / 1000];
+        else
+        {
+            description = [NSString stringWithFormat: @"Added %@  |  File Size: %dKB", [dateFormatter stringFromDate: self.addedTimeStamp], [self.originalFileSizeInBytes intValue] / 1000];
+        }
+        
+        return description;
     }
 
     -(NSURL*) fileURL
@@ -134,6 +146,7 @@
                 __thumbnailImage = UIGraphicsGetImageFromCurrentImageContext();
                 
                 UIGraphicsEndImageContext();
+                
             }
         }
         else if ([self.conversionState intValue] == PENDING)
@@ -150,6 +163,13 @@
 
     -(void)awakeFromFetch
     {
+    }
+
+    -(void)dealloc
+    {
+        [numberFormatter release]; numberFormatter = nil;
+        [dateFormatter release]; dateFormatter = nil;
+        [__thumbnailImage release]; __thumbnailImage = nil;
     }
 
 @end

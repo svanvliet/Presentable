@@ -13,6 +13,7 @@
 @implementation DocumentUITableViewCell
 {
 }
+    static NSArray *nibContents;
 
     -(NSString*) titleLabelText
     {
@@ -47,34 +48,23 @@
         }
     }
 
-    + (DocumentUITableViewCell*) createNewCustomCellFromNib: (NSString*)withReuseIdentifier 
-    {
-        NSArray* nibContents = [[NSBundle mainBundle]
-                                loadNibNamed:@"DocumentUITableViewCell" owner:self options:NULL];
-        NSEnumerator *nibEnumerator = [nibContents objectEnumerator];
-        DocumentUITableViewCell *customCell= nil;
-        NSObject* nibItem = nil;
-        while ( (nibItem = [nibEnumerator nextObject]) != nil) {
-            if ( [nibItem isKindOfClass: [DocumentUITableViewCell class]]) {
-                customCell = (DocumentUITableViewCell*)nibItem;
-                break; // we have a winner
-            }
-        }
-        return customCell;
-    }
-
     - (void) awakeFromNib
     {
-        //CALayer *shadowLayer = [CALayer layer];
-        //shadowLayer.bounds = thumbnailImageView.bounds;
         
         thumbnailImageView.layer.shadowColor = [[UIColor blackColor] CGColor];
-        thumbnailImageView.layer.shadowRadius = 3.0f;
+        thumbnailImageView.layer.shadowRadius = 2.0f;
         thumbnailImageView.layer.shadowOpacity = 0.5f;
         thumbnailImageView.layer.shadowOffset = CGSizeMake(0, 0);
+        thumbnailImageView.layer.shouldRasterize = YES;
         
+        itemView.layer.cornerRadius = 5.0f;
+        itemView.layer.shadowOpacity = 0.5f;
+        itemView.layer.shadowRadius = 5.0f;
+        itemView.layer.shadowOffset = CGSizeMake(1,1);
+        itemView.layer.shadowColor = [[UIColor blackColor] CGColor];
+        itemView.layer.shouldRasterize = YES;
         
-        thumbnailImageView.clipsToBounds = NO;
+        self.clipsToBounds = NO;
     }
 
     - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -97,7 +87,7 @@
     {
         [titleLabel release];
         [fileSizeLabel release];
-        [progressView release];
+        [thumbnailImageView release];
         [super dealloc];
     }
 
