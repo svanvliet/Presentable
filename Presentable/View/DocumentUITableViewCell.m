@@ -13,7 +13,6 @@
 @implementation DocumentUITableViewCell
 {
 }
-    static NSArray *nibContents;
 
     -(NSString*) titleLabelText
     {
@@ -35,22 +34,9 @@
         fileSizeLabel.text = withText;
     }
 
-    -(UIImage*) thumbnailImage
-    {
-        return thumbnailImageView.image;
-    }
-
-    -(void) setThumbnailImage:(UIImage *)thumbnailImage
-    {
-        if (thumbnailImageView != nil)
-        {
-            thumbnailImageView.image = thumbnailImage;
-        }
-    }
-
     - (void) awakeFromNib
     {
-        
+        /*
         thumbnailImageView.layer.shadowColor = [[UIColor blackColor] CGColor];
         thumbnailImageView.layer.shadowRadius = 2.0f;
         thumbnailImageView.layer.shadowOpacity = 0.5f;
@@ -65,6 +51,7 @@
         itemView.layer.shouldRasterize = YES;
         
         self.clipsToBounds = NO;
+        */
     }
 
     - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier

@@ -11,7 +11,6 @@
 @interface PresentableAppDelegate : NSObject <UIApplicationDelegate> 
 {
 }
-
     //
     // Property outlets for UI components to be accessible through IB
 
@@ -30,6 +29,5 @@
 
     - (void)saveContext;
     - (NSURL *)applicationDocumentsDirectory;
-
 
 @end

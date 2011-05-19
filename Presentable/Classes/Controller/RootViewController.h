@@ -13,8 +13,13 @@
 
 @interface RootViewController : UITableViewController <NSFetchedResultsControllerDelegate, UIDocumentInteractionControllerDelegate, ASIHTTPRequestDelegate> 
 {
+    //
+    // Property outlets for UI components to be accessible through IB
+    
     IBOutlet UIProgressView *progressView;
 }
+    //
+    // Property definitions
 
     @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
     @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;

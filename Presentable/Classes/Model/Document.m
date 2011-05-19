@@ -114,7 +114,7 @@
         {
             if (__thumbnailImage == nil)
             {
-                CGFloat width = 100.0f;
+                CGFloat width = 160.0f;
                 CGPDFDocumentRef pdfDocumentRef = CGPDFDocumentCreateWithURL((CFURLRef)self.convertedFileURL);
                 CGPDFPageRef pdfFirstPage = CGPDFDocumentGetPage(pdfDocumentRef, 1);
                 
@@ -151,7 +151,7 @@
         }
         else if ([self.conversionState intValue] == PENDING)
         {
-            //__thumbnailImage = [[UIImage alloc] init];
+            __thumbnailImage = [[UIImage alloc] init];
         }
         return __thumbnailImage;
     }
@@ -167,6 +167,8 @@
 
     -(void)dealloc
     {
+        [super dealloc];
+        
         [numberFormatter release]; numberFormatter = nil;
         [dateFormatter release]; dateFormatter = nil;
         [__thumbnailImage release]; __thumbnailImage = nil;

@@ -17,8 +17,10 @@
 @interface RootViewController
 (
 )
-    - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+    //
+    // Instance method declarations for this application
 
+    - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
     - (void)uploadFailed:(ASIHTTPRequest *)request;
     - (void)uploadFinished:(ASIHTTPRequest *)request;
 
@@ -26,12 +28,19 @@
 
 @implementation RootViewController
 
+    //
+    // Property impelementations 
+
     @synthesize fetchedResultsController=__fetchedResultsController;
     @synthesize managedObjectContext=__managedObjectContext;
-
     @synthesize requestQueue;
     @synthesize documentCell;
 
+    //
+    // Applicaiton startup methods
+
+    // METHOD:  application: viewDidLoad:
+    // 
     - (void)viewDidLoad
     {
         [super viewDidLoad];
@@ -50,125 +59,146 @@
         // Setup UITableView sections    
         
         requestQueue = [[ASINetworkQueue alloc] init];
+        [requestQueue setUploadProgressDelegate:progressView];
+        [requestQueue setDownloadProgressDelegate:progressView];
+        [requestQueue setDelegate: self];
+        [requestQueue setRequestDidFailSelector:@selector(uploadFailed:)];
+        [requestQueue setRequestDidFinishSelector:@selector(uploadFinished:)];
     }
 
-    - (void)viewWillAppear:(BOOL)animated
-    {
-        [super viewWillAppear:animated];
-    }
+    //
+    // Standard UI behavior methods
 
-    - (void)viewDidAppear:(BOOL)animated
-    {
-        [super viewDidAppear:animated];
-    }
-
-    - (void)viewWillDisappear:(BOOL)animated
-    {
-        [super viewWillDisappear:animated];
-    }
-
-    - (void)viewDidDisappear:(BOOL)animated
-    {
-        [super viewDidDisappear:animated];
-    }
-
+    // METHOD:  shouldAutorotateToInterfaceOrientation:
+    // 
     -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
     {
         return YES;
     }
 
-    /*
-     // Override to allow orientations other than the default portrait orientation.
-    - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-        // Return YES for supported orientations.
-        return (interfaceOrientation == UIInterfaceOrientationPortrait);
-    }
-     */
+    //
+    // UITableView delegated methods
 
-    // Customize the number of sections in the table view.
+    // METHOD:  numberOfSectionsInTableView:
+    // 
     - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
     {
         return [[self.fetchedResultsController sections] count];
     }
 
+    // METHOD:  tableView: numberOfRowsInSection:
+    // 
     - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
     {
         id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
         return [sectionInfo numberOfObjects];
     }
 
+    // METHOD:  tableView: titleForHeaderInSection:
+    // 
     -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
     {
         id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
         
         int conversionState = [[sectionInfo name] intValue];
-        
-        return [Document documentConversionStateTypeString: conversionState];
+        return [Document documentConversionStateTypeString: conversionState]; // Should be a localized value
     }
 
     /*
+    // METHOD:  tableView: viewForHeaderInSection:
+    // 
     - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
     {
         return [[UILabel alloc] init];
     }
     */
 
+    // METHOD:  tableView: willDisplayCell:
+    // 
     -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
     {
-        //cell.contentView.backgroundColor = [UIColor whiteColor];
-        
-        /*
-        CALayer *layer = cell.contentView.layer;
-        
-        layer.borderColor = [[UIColor whiteColor] CGColor];
-        layer.borderWidth = 3.0f;
-        layer.cornerRadius = 3.0f; 
-        layer.backgroundColor = [[UIColor whiteColor] CGColor];
-        */
+        // We can customize the cell prior to it's display here.
     }
 
-
-    // Customize the appearance of table view cells.
+    // METHOD:  tableView: cellForRowAtIndexPath:
+    // 
     - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
     {
-        static NSString *CellIdentifier = @"Cell";
-        
+        static NSString *CellIdentifier = @"Cell"; // Must match Xcode Identifier value for this view
         DocumentUITableViewCell *cell = (DocumentUITableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         
-        if (cell == nil) {
-            
-            
+        if (cell == nil) 
+        {
             [[NSBundle mainBundle] loadNibNamed:@"DocumentUITableViewCell" owner:self options:NULL];
             cell = documentCell;
             documentCell = nil;
-            
-            //cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-            //cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
         }
 
-        // Configure the cell.
         [self configureCell:cell atIndexPath:indexPath];
         return cell;
     }
 
-    /*
-    // Override to support conditional editing of the table view.
-    - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+    // METHOD:  tableVIew: canMoveRowAtIndexPath:
+    //
+    - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
     {
-        // Return NO if you do not want the specified item to be editable.
-        return YES;
+        return NO; // The table view should not be re-orderable.
     }
-    */
 
+    // METHOD:  tableView: didSelectRowAtIndexPath:
+    //
+    - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+    {
+        UIDocumentInteractionController *documentController = nil;
+        NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+        Document *document = (Document*)[self.fetchedResultsController objectAtIndexPath:indexPath];
+        
+        switch ([document.conversionState intValue]) 
+        {
+            case PENDING:
+                
+                document.conversionState = [NSNumber numberWithInt:ACTIVE];
+                [context save:nil];
+                
+                [ASIHTTPRequest setDefaultTimeOutSeconds: 60];
+                
+                ASIFormDataRequest *uploadRequest = [ASIFormDataRequest 
+                                                     requestWithURL: [NSURL URLWithString:@"http://dev.cloud.tenseventynine.com/PresentableServices/ConvertDocument"]];
+                
+                [uploadRequest setPostValue:indexPath forKey:@"documentIndexPath"];
+                [uploadRequest setPostValue:[[document objectID] URIRepresentation] forKey:@"documentID"];
+                [uploadRequest setFile:[[document originalFileURL] path] forKey:@"document"];
+                
+                [requestQueue addOperation: uploadRequest];
+                [requestQueue go];
+                
+                #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
+                [uploadRequest setShouldContinueWhenAppEntersBackground:YES];
+                #endif
+                break;
+                
+            case COMPLETED:
+                
+                documentController = [UIDocumentInteractionController interactionControllerWithURL:document.convertedFileURL];
+                documentController.delegate = self;
+                [documentController presentPreviewAnimated:YES];
+                
+                break;
+                
+            default:
+                break;
+        }
+    }
+
+    // METHOD:  tableView: commitEditingStyle:
+    // 
     - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
     {
         if (editingStyle == UITableViewCellEditingStyleDelete)
         {
-            // Delete the managed object for the given index path
             NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
             [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
             
-            // Save the context.
             NSError *error = nil;
             if (![context save:&error])
             {
@@ -183,85 +213,17 @@
         }   
     }
 
-    - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-    {
-        // The table view should not be re-orderable.
-        return NO;
-    }
+    //
+    // HTTP request handling methods
 
-    - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-    {
-        UIDocumentInteractionController *documentController = nil;
-        
-        NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-        Document *document = (Document*)[self.fetchedResultsController objectAtIndexPath:indexPath];
-        
-        //DocumentUITableViewCell *docCell = (DocumentUITableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
-        //UIProgressView *progressViewInCell = [docCell progressCellDelegate];
-        
-        switch ([document.conversionState intValue]) 
-        {
-            case PENDING:
-                
-                document.conversionState = [NSNumber numberWithInt:ACTIVE];
-                [context save:nil];
-                
-                [ASIHTTPRequest setDefaultTimeOutSeconds: 60];
-                
-                ASIFormDataRequest *uploadRequest = [ASIFormDataRequest 
-                                      requestWithURL: [NSURL URLWithString:@"http://dev.cloud.tenseventynine.com/PresentableServices/ConvertDocument"]];
-                
-                [uploadRequest setPostValue:indexPath forKey:@"documentIndexPath"];
-                [uploadRequest setPostValue:[[document objectID] URIRepresentation] forKey:@"documentID"];
-                [uploadRequest setFile:[[document originalFileURL] path] forKey:@"document"];
-                [uploadRequest setUploadProgressDelegate:progressView];
-                [uploadRequest setDownloadProgressDelegate:progressView];
-                
-                [requestQueue setDelegate: self];
-                [requestQueue setRequestDidFailSelector:@selector(uploadFailed:)];
-                [requestQueue setRequestDidFinishSelector:@selector(uploadFinished:)];
-                
-                [requestQueue addOperation: uploadRequest];
-                [requestQueue go];
-                
-                #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
-                [uploadRequest setShouldContinueWhenAppEntersBackground:YES];
-                #endif
-                break;
-           
-            case COMPLETED:
-                
-                
-                documentController = [UIDocumentInteractionController interactionControllerWithURL:document.convertedFileURL];
-                documentController.delegate = self;
-                [documentController presentPreviewAnimated:YES];
-                
-                break;
-                
-            default:
-                break;
-        }
-              
-        /*
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Row Selected" message:document.fileName delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alertView autorelease];
-        [alertView show];      
-        */
-            
-                                             
-        /*
-        <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-        // ...
-        // Pass the selected object to the new view controller.
-        [self.navigationController pushViewController:detailViewController animated:YES];
-        [detailViewController release];
-        */
-    }
-
+    // METHOD:  uploadFailed:
+    // 
     -(void)uploadFailed:(ASIHTTPRequest *)request
     {
     }
 
+    // METHOD:  uploadFinished:
+    //
     -(void)uploadFinished:(ASIHTTPRequest *)request
     {       
         NSString *documentID = nil;
@@ -278,9 +240,6 @@
         
         document.convertedFileType = @"pdf";
         
-        //[document setValue:[document valueForKey:@"originalFileName"] forKey:@"convertedFileName"];
-        //[document setValue:@"pdf" forKey:@"convertedFileType"];
-        
         NSString *path = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.%@", document.fileName, document.convertedFileType]];
         [[request responseData] writeToFile:path atomically:NO];
         
@@ -291,6 +250,7 @@
         document.conversionCompletedTimeStamp = [NSDate date];
         document.convertedFileURL = [NSURL fileURLWithPath: path];
         document.conversionState = [NSNumber numberWithInt: COMPLETED];
+        
         
         [context save: nil]; // TODO: Implement exception handling
         
@@ -365,7 +325,7 @@
         
         docCell.titleLabelText = document.fileName;
         docCell.fileSizeLabelText = document.fileDescription;
-        docCell.thumbnailImage = [document thumbnailImage];
+        //docCell.thumbnailImageView = [document thumbnailImage];
         
         
         //docCell.fileSizeLabelText = [NSString stringWithFormat: @"Size: %@KB",
