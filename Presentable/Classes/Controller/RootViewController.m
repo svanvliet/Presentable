@@ -14,6 +14,13 @@
 #import <QuartzCore/CALayer.h>
 #import <CoreGraphics/CGGeometry.h>
 
+typedef enum
+{
+    ON_FAILURE_ASK_RESTART,
+    ON_SELECT_FAILED_ASK_RESTART
+} 
+UIAlertViewTagType;
+
 @interface RootViewController
 (
 )
@@ -23,6 +30,7 @@
     - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
     - (void)uploadFailed:(ASIHTTPRequest *)request;
     - (void)uploadFinished:(ASIHTTPRequest *)request;
+    - (void)convertDocument:(Document*)document withIndexPath:(NSIndexPath*)indexPath;
 
 @end
 
@@ -59,6 +67,7 @@
         // Setup UITableView sections    
         
         requestQueue = [[ASINetworkQueue alloc] init];
+        [requestQueue setShowAccurateProgress: YES];
         [requestQueue setUploadProgressDelegate:progressView];
         [requestQueue setDownloadProgressDelegate:progressView];
         [requestQueue setDelegate: self];
@@ -151,41 +160,43 @@
     {
         UIDocumentInteractionController *documentController = nil;
         NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-        Document *document = (Document*)[self.fetchedResultsController objectAtIndexPath:indexPath];
         
-        switch ([document.conversionState intValue]) 
+        selectedIndexPath = indexPath;
+        selectedDocument = (Document*)[self.fetchedResultsController objectAtIndexPath:indexPath];
+        
+        UIAlertView *alert = nil;
+        
+        switch ([selectedDocument.conversionState intValue]) 
         {
             case PENDING:
                 
-                document.conversionState = [NSNumber numberWithInt:ACTIVE];
-                [context save:nil];
-                
-                [ASIHTTPRequest setDefaultTimeOutSeconds: 60];
-                
-                ASIFormDataRequest *uploadRequest = [ASIFormDataRequest 
-                                                     requestWithURL: [NSURL URLWithString:@"http://dev.cloud.tenseventynine.com/PresentableServices/ConvertDocument"]];
-                
-                [uploadRequest setPostValue:indexPath forKey:@"documentIndexPath"];
-                [uploadRequest setPostValue:[[document objectID] URIRepresentation] forKey:@"documentID"];
-                [uploadRequest setFile:[[document originalFileURL] path] forKey:@"document"];
-                
-                [requestQueue addOperation: uploadRequest];
-                [requestQueue go];
-                
-                #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
-                [uploadRequest setShouldContinueWhenAppEntersBackground:YES];
-                #endif
+                [self convertDocument: selectedDocument withIndexPath:indexPath];
                 break;
                 
             case COMPLETED:
                 
-                documentController = [UIDocumentInteractionController interactionControllerWithURL:document.convertedFileURL];
+                documentController = [UIDocumentInteractionController interactionControllerWithURL:selectedDocument.convertedFileURL];
                 documentController.delegate = self;
                 [documentController presentPreviewAnimated:YES];
                 
                 break;
                 
+            case FAILED:
+                
+                alert = [[[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Do you wish to retry converting the selected document ?" delegate:self cancelButtonTitle:nil otherButtonTitles:nil] autorelease];
+                
+                [alert addButtonWithTitle: @"Yes"]; // Index: 0
+                [alert addButtonWithTitle: @"No"];  // Index: 1
+                [alert setTag: ON_SELECT_FAILED_ASK_RESTART];
+                [alert show];
+                
+                [tableView deselectRowAtIndexPath:indexPath animated:NO];
+                
+                break;
+                
             default:
+                
+                [tableView deselectRowAtIndexPath:indexPath animated:NO];
                 break;
         }
     }
@@ -213,13 +224,81 @@
         }   
     }
 
+    // Modal dialog handling
+    //
+
+    // METHOD:
+    //
+    -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex: (NSInteger)buttonIndex
+    {
+        if (alertView.tag == ON_FAILURE_ASK_RESTART)
+        {
+            if (buttonIndex == 0) // YES
+            {
+                [self convertDocument:failedDocument withIndexPath:failedIndexPath];
+                failedDocument = nil;
+                failedIndexPath = nil;
+            }
+        }
+        else if (alertView.tag == ON_SELECT_FAILED_ASK_RESTART)
+        {            
+            if (buttonIndex == 0) // YES
+            {
+                [self convertDocument:selectedDocument withIndexPath:selectedIndexPath];
+                selectedDocument = nil;
+                selectedIndexPath = nil;
+            }
+        }
+    }
+
     //
     // HTTP request handling methods
+
+    // METHOD
+    //
+    -(void)convertDocument:(Document*)document withIndexPath:(NSIndexPath*)indexPath
+    {
+        NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+        selectedDocument.conversionState = [NSNumber numberWithInt:ACTIVE];
+        [context save:nil];
+        
+        [ASIHTTPRequest setDefaultTimeOutSeconds: 60];
+        
+        ASIFormDataRequest *uploadRequest = [ASIFormDataRequest 
+                                             requestWithURL: [NSURL URLWithString:@"http://dev.cloud.tenseventynine.com/PresentableServices/ConvertDocument"]];
+        
+        if (!uploadRequest.userInfo)
+        {
+            uploadRequest.userInfo = [[NSDictionary alloc] initWithObjectsAndKeys: document, @"document", nil];
+        }
+        
+        [uploadRequest setPostValue:indexPath forKey:@"documentIndexPath"];
+        [uploadRequest setPostValue:[[document objectID] URIRepresentation] forKey:@"documentID"];
+        [uploadRequest setFile:[[document originalFileURL] path] forKey:@"document"];
+        
+        [requestQueue addOperation: uploadRequest];
+        [requestQueue go];
+        
+        #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
+        [uploadRequest setShouldContinueWhenAppEntersBackground:YES];
+        #endif
+    }
 
     // METHOD:  uploadFailed:
     // 
     -(void)uploadFailed:(ASIHTTPRequest *)request
     {
+        NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+        failedDocument = (Document*)[request.userInfo objectForKey: @"document"];
+        failedDocument.conversionState = [NSNumber numberWithInt: FAILED];
+        [context save: nil];
+        
+        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Whoops!" message:@"There was a problem with the conversion request.  Would you like to try again?" delegate:self cancelButtonTitle:nil otherButtonTitles:nil] autorelease];
+        
+        [alert addButtonWithTitle: @"Yes"]; // Index: 0
+        [alert addButtonWithTitle: @"No"];  // Index: 1
+        [alert setTag: ON_FAILURE_ASK_RESTART];
+        [alert show];
     }
 
     // METHOD:  uploadFinished:
@@ -250,7 +329,7 @@
         document.conversionCompletedTimeStamp = [NSDate date];
         document.convertedFileURL = [NSURL fileURLWithPath: path];
         document.conversionState = [NSNumber numberWithInt: COMPLETED];
-        
+        document.thumbnailImageData = UIImagePNGRepresentation([Document PDFPageThumbnailImage: document.convertedFileURL]);
         
         [context save: nil]; // TODO: Implement exception handling
         
@@ -311,28 +390,19 @@
     {
         Document *document = (Document*)[self.fetchedResultsController objectAtIndexPath:indexPath];
         
-        /*
-        NSNumberFormatter *formatter = [[[NSNumberFormatter alloc] init] autorelease];
-        [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
-        [formatter setCurrencySymbol: @""];
-        [formatter setMaximumFractionDigits: 0];
-        
-        NSNumber *fileSizeInBytes = [[managedObject valueForKey:@"fileSizeInBytes"] description];
-        fileSizeInBytes = [NSNumber numberWithFloat: [fileSizeInBytes intValue] / 1000 ];
-        */
-        
         DocumentUITableViewCell *docCell = (DocumentUITableViewCell*)cell;
         
         docCell.titleLabelText = document.fileName;
         docCell.fileSizeLabelText = document.fileDescription;
-        //docCell.thumbnailImageView = [document thumbnailImage];
         
-        
-        //docCell.fileSizeLabelText = [NSString stringWithFormat: @"Size: %@KB",
-        //                             [formatter stringForObjectValue: fileSizeInBytes]]; 
-        
-        //cell.detailTextLabel.text = [[managedObject valueForKey:@"fileName"] description];
-        //cell.textLabel.text = [[managedObject valueForKey:@"fileName"] description];
+        if ([document.conversionState intValue] == COMPLETED)
+        {
+            docCell.thumbnailImage = [UIImage imageWithData: document.thumbnailImageData];
+        }
+        else
+        {
+            docCell.thumbnailImage = nil;
+        }
     }
 
     - (void)insertNewObject

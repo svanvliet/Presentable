@@ -10,13 +10,23 @@
 #import <CoreData/CoreData.h>
 #import "ASINetworkQueue.h"
 #import "DocumentUITableViewCell.h"
+#import "Document.h"
 
-@interface RootViewController : UITableViewController <NSFetchedResultsControllerDelegate, UIDocumentInteractionControllerDelegate, ASIHTTPRequestDelegate> 
+@interface RootViewController : UITableViewController <NSFetchedResultsControllerDelegate, UIDocumentInteractionControllerDelegate, ASIHTTPRequestDelegate, UIAlertViewDelegate> 
 {
     //
     // Property outlets for UI components to be accessible through IB
     
     IBOutlet UIProgressView *progressView;
+    
+    // Selected item instance variables
+    //
+    
+    Document *selectedDocument;
+    NSIndexPath *selectedIndexPath;
+    
+    Document *failedDocument;
+    NSIndexPath *failedIndexPath;
 }
     //
     // Property definitions

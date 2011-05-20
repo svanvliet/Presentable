@@ -34,6 +34,19 @@
         fileSizeLabel.text = withText;
     }
 
+    -(UIImage*) thumbnailImage
+    {
+        return thumbnailImageView.image;
+    }
+
+    -(void) setThumbnailImage:(UIImage *)image
+    {
+        if (thumbnailImageView)
+        {
+            thumbnailImageView.image = image;
+        }
+    }
+
     - (void) awakeFromNib
     {
         /*

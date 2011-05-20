@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1056</int>
-		<string key="IBDocument.SystemVersion">10J869</string>
+		<string key="IBDocument.SystemVersion">10J567</string>
 		<string key="IBDocument.InterfaceBuilderVersion">1306</string>
 		<string key="IBDocument.AppKitVersion">1038.35</string>
-		<string key="IBDocument.HIToolboxVersion">461.00</string>
+		<string key="IBDocument.HIToolboxVersion">462.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">301</string>
@@ -57,7 +57,7 @@
 									<object class="IBUIImageView" id="826008374">
 										<reference key="NSNextResponder" ref="964138473"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{10, 8}, {80, 60}}</string>
+										<string key="NSFrame">{{9, 9}, {80, 60}}</string>
 										<reference key="NSSuperview" ref="964138473"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="722900180"/>
@@ -74,7 +74,7 @@
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 									</object>
 								</object>
-								<string key="NSFrame">{{7, 5}, {308, 76}}</string>
+								<string key="NSFrame">{{7, 5}, {306, 78}}</string>
 								<reference key="NSSuperview" ref="336192536"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="826008374"/>
@@ -90,7 +90,7 @@
 							<object class="IBUILabel" id="722900180">
 								<reference key="NSNextResponder" ref="336192536"/>
 								<int key="NSvFlags">290</int>
-								<string key="NSFrame">{{107, 20}, {200, 21}}</string>
+								<string key="NSFrame">{{107, 13}, {200, 21}}</string>
 								<reference key="NSSuperview" ref="336192536"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="70237681"/>
@@ -116,13 +116,12 @@
 							<object class="IBUILabel" id="70237681">
 								<reference key="NSNextResponder" ref="336192536"/>
 								<int key="NSvFlags">290</int>
-								<string key="NSFrame">{{107, 42}, {200, 21}}</string>
+								<string key="NSFrame">{{107, 36}, {200, 36}}</string>
 								<reference key="NSSuperview" ref="336192536"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
-								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText">&lt;File Size in KB&gt;</string>
@@ -143,6 +142,8 @@
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">1</int>
 								<float key="IBUIMinimumFontSize">14</float>
+								<int key="IBUINumberOfLines">2</int>
+								<int key="IBUILineBreakMode">0</int>
 							</object>
 						</object>
 						<string key="NSFrameSize">{320, 83}</string>

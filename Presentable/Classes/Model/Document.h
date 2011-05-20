@@ -23,17 +23,15 @@ DocumentConversionStateType;
 @interface Document : NSManagedObject 
 {
     @private
-    UIImage *__thumbnailImage;
-    
     NSDateFormatter *dateFormatter;
     NSNumberFormatter *numberFormatter;
 }
 
     +(NSString*) documentConversionStateTypeString:(DocumentConversionStateType)forEnumValue;
-
-    -(UIImage*) thumbnailImage;
+    +(UIImage*) PDFPageThumbnailImage:(NSURL*)PDFURL;
 
     @property (nonatomic, retain) NSDate * addedTimeStamp;
+    @property (nonatomic, retain) NSData * thumbnailImageData;
 
     @property (nonatomic, retain) NSString * originalFileName;
     @property (nonatomic, retain) NSString * originalFileType;

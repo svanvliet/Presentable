@@ -18,11 +18,8 @@
     IBOutlet UIView *itemView;
     
 }
-
-    +(DocumentUITableViewCell*) createNewCustomCellFromNib: (NSString*)withReuseIdentifier;
-
     @property (nonatomic, retain) NSString * titleLabelText;
     @property (nonatomic, retain) NSString * fileSizeLabelText;
-
+    @property (nonatomic, retain) UIImage * thumbnailImage;
 
 @end

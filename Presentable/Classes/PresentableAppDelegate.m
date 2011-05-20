@@ -74,7 +74,9 @@
             
             [self.managedObjectContext save:nil];
             
+            return YES;
         }
+        return NO;
     }
 
     - (void)applicationWillResignActive:(UIApplication *)application
