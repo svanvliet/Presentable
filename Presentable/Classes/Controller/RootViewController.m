@@ -293,8 +293,10 @@ UIAlertViewTagType;
         failedDocument.conversionState = [NSNumber numberWithInt: FAILED];
         [context save: nil];
         
-        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Whoops!" message:@"There was a problem with the conversion request.  Would you like to try again?" delegate:self cancelButtonTitle:nil otherButtonTitles:nil] autorelease];
+        NSString *errorDescription = [NSString stringWithFormat:@"There was a problem with the conversion request (%@).\n\n  Would you like to try again?", [[request error] localizedDescription], nil];
         
+        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Whoops!" message: errorDescription delegate:self cancelButtonTitle:nil otherButtonTitles:nil] autorelease];
+                
         [alert addButtonWithTitle: @"Yes"]; // Index: 0
         [alert addButtonWithTitle: @"No"];  // Index: 1
         [alert setTag: ON_FAILURE_ASK_RESTART];

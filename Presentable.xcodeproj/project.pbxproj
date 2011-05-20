@@ -19,6 +19,7 @@
 		4018C07B1375024A00DEEB44 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4018C0791375024A00DEEB44 /* MainWindow-iPad.xib */; };
 		401F35541383BA09001FD11D /* Presentable Icon iPhone 4 Retina.png in Resources */ = {isa = PBXBuildFile; fileRef = 401F35531383BA09001FD11D /* Presentable Icon iPhone 4 Retina.png */; };
 		401F35561383BA77001FD11D /* Presentable Icon iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 401F35551383BA77001FD11D /* Presentable Icon iPad.png */; };
+		402C0A311386C98300DADA1D /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 402C0A301386C98300DADA1D /* Settings.bundle */; };
 		404CB1D013778A9500D6773E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 404CB1CF13778A9500D6773E /* CoreGraphics.framework */; };
 		404CB1E71377919A00D6773E /* Presentable.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 404CB1E51377919A00D6773E /* Presentable.xcdatamodeld */; };
 		405341AB137782B300185BF5 /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = 405341AA137782B300185BF5 /* Document.m */; };
@@ -71,6 +72,7 @@
 		4018C07A1375024A00DEEB44 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "iPad/en.lproj/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		401F35531383BA09001FD11D /* Presentable Icon iPhone 4 Retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Presentable Icon iPhone 4 Retina.png"; sourceTree = SOURCE_ROOT; };
 		401F35551383BA77001FD11D /* Presentable Icon iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Presentable Icon iPad.png"; sourceTree = SOURCE_ROOT; };
+		402C0A301386C98300DADA1D /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = "Supporting Files/Settings.bundle"; sourceTree = "<group>"; };
 		404CB1CB13778A2600D6773E /* Presentable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Presentable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		404CB1CD13778A2600D6773E /* PresentableTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PresentableTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		404CB1CF13778A9500D6773E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -200,6 +202,7 @@
 				405341E11377845A00185BF5 /* Presentable-Info.plist */,
 				405341E21377845A00185BF5 /* Presentable-Prefix.pch */,
 				40FE966013808D35004E9569 /* Entitlements.plist */,
+				402C0A301386C98300DADA1D /* Settings.bundle */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -420,6 +423,7 @@
 				40FE966113808D35004E9569 /* Entitlements.plist in Resources */,
 				401F35541383BA09001FD11D /* Presentable Icon iPhone 4 Retina.png in Resources */,
 				401F35561383BA77001FD11D /* Presentable Icon iPad.png in Resources */,
+				402C0A311386C98300DADA1D /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

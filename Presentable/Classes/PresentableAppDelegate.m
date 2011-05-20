@@ -43,6 +43,18 @@
         
         //[[self window] setBackgroundColor: [UIColor colorWithPatternImage:[UIImage imageWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"MainViewBackground01" ofType:@"jpg"]]]];
         
+        // Settings.bundle init
+        //
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        if (![defaults objectForKey: @"AUTOSTART_CONVERSION_ON_OPEN_IN"])
+        {
+            NSDictionary *defaultsDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                                NO, @"AUTOSTART_CONVERSION_ON_OPEN_IN", 
+                                                60, @"MAX_REQUEST_TIMEOUT_IN_SECONDS", nil];
+            [defaults registerDefaults: defaultsDictionary];
+            [defaults synchronize];
+        }
+        
         self.window.rootViewController = self.navigationController;
         [self.window makeKeyAndVisible];
         return YES;
