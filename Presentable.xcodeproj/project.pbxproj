@@ -20,6 +20,7 @@
 		401F35541383BA09001FD11D /* Presentable Icon iPhone 4 Retina.png in Resources */ = {isa = PBXBuildFile; fileRef = 401F35531383BA09001FD11D /* Presentable Icon iPhone 4 Retina.png */; };
 		401F35561383BA77001FD11D /* Presentable Icon iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 401F35551383BA77001FD11D /* Presentable Icon iPad.png */; };
 		402C0A311386C98300DADA1D /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 402C0A301386C98300DADA1D /* Settings.bundle */; };
+		404C9CE31387151200A41886 /* MainViewBackgroundPattern.png in Resources */ = {isa = PBXBuildFile; fileRef = 404C9CE21387151200A41886 /* MainViewBackgroundPattern.png */; };
 		404CB1D013778A9500D6773E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 404CB1CF13778A9500D6773E /* CoreGraphics.framework */; };
 		404CB1E71377919A00D6773E /* Presentable.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 404CB1E51377919A00D6773E /* Presentable.xcdatamodeld */; };
 		405341AB137782B300185BF5 /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = 405341AA137782B300185BF5 /* Document.m */; };
@@ -45,7 +46,6 @@
 		40534202137789E000185BF5 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 40534201137789E000185BF5 /* libz.1.2.3.dylib */; };
 		40891AF6137A81100064ED35 /* DocumentUITableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40891AF5137A81100064ED35 /* DocumentUITableViewCell.m */; };
 		40891AFA137A8A8B0064ED35 /* DocumentUITableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40891AF9137A8A8B0064ED35 /* DocumentUITableViewCell.xib */; };
-		408EF0A1137F946900FD9FD2 /* MainViewBackgroundPattern.gif in Resources */ = {isa = PBXBuildFile; fileRef = 408EF0A0137F946900FD9FD2 /* MainViewBackgroundPattern.gif */; };
 		408EF0A3137F965C00FD9FD2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408EF0A2137F965C00FD9FD2 /* QuartzCore.framework */; };
 		40FE966113808D35004E9569 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 40FE966013808D35004E9569 /* Entitlements.plist */; };
 /* End PBXBuildFile section */
@@ -73,6 +73,7 @@
 		401F35531383BA09001FD11D /* Presentable Icon iPhone 4 Retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Presentable Icon iPhone 4 Retina.png"; sourceTree = SOURCE_ROOT; };
 		401F35551383BA77001FD11D /* Presentable Icon iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Presentable Icon iPad.png"; sourceTree = SOURCE_ROOT; };
 		402C0A301386C98300DADA1D /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = "Supporting Files/Settings.bundle"; sourceTree = "<group>"; };
+		404C9CE21387151200A41886 /* MainViewBackgroundPattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MainViewBackgroundPattern.png; path = Resources/MainViewBackgroundPattern.png; sourceTree = "<group>"; };
 		404CB1CB13778A2600D6773E /* Presentable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Presentable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		404CB1CD13778A2600D6773E /* PresentableTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PresentableTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		404CB1CF13778A9500D6773E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -119,7 +120,6 @@
 		40891AF4137A81100064ED35 /* DocumentUITableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocumentUITableViewCell.h; path = View/DocumentUITableViewCell.h; sourceTree = "<group>"; };
 		40891AF5137A81100064ED35 /* DocumentUITableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocumentUITableViewCell.m; path = View/DocumentUITableViewCell.m; sourceTree = "<group>"; };
 		40891AF9137A8A8B0064ED35 /* DocumentUITableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DocumentUITableViewCell.xib; path = View/DocumentUITableViewCell.xib; sourceTree = "<group>"; };
-		408EF0A0137F946900FD9FD2 /* MainViewBackgroundPattern.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = MainViewBackgroundPattern.gif; path = Resources/MainViewBackgroundPattern.gif; sourceTree = "<group>"; };
 		408EF0A2137F965C00FD9FD2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		40FE966013808D35004E9569 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Entitlements.plist; path = "Supporting Files/Entitlements.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -324,9 +324,9 @@
 		405341D91377840100185BF5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				404C9CE21387151200A41886 /* MainViewBackgroundPattern.png */,
 				401F35551383BA77001FD11D /* Presentable Icon iPad.png */,
 				401F35531383BA09001FD11D /* Presentable Icon iPhone 4 Retina.png */,
-				408EF0A0137F946900FD9FD2 /* MainViewBackgroundPattern.gif */,
 				405341DA1377841400185BF5 /* SamplePresentation.pptx */,
 			);
 			name = Resources;
@@ -419,11 +419,11 @@
 				405341DE1377845100185BF5 /* RootViewController.xib in Resources */,
 				405341E31377845A00185BF5 /* InfoPlist.strings in Resources */,
 				40891AFA137A8A8B0064ED35 /* DocumentUITableViewCell.xib in Resources */,
-				408EF0A1137F946900FD9FD2 /* MainViewBackgroundPattern.gif in Resources */,
 				40FE966113808D35004E9569 /* Entitlements.plist in Resources */,
 				401F35541383BA09001FD11D /* Presentable Icon iPhone 4 Retina.png in Resources */,
 				401F35561383BA77001FD11D /* Presentable Icon iPad.png in Resources */,
 				402C0A311386C98300DADA1D /* Settings.bundle in Resources */,
+				404C9CE31387151200A41886 /* MainViewBackgroundPattern.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

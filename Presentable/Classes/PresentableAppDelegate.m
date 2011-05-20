@@ -39,15 +39,20 @@
         
         //RootViewController *rootViewController = (RootViewController *)[self.navigationController topViewController];
         
-        [self.window setBackgroundColor: [UIColor lightGrayColor]];
+        //[self.window setBackgroundColor: [UIColor lightGrayColor]];
         
-        //[[self window] setBackgroundColor: [UIColor colorWithPatternImage:[UIImage imageWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"MainViewBackground01" ofType:@"jpg"]]]];
+        [[self window] setBackgroundColor: [UIColor colorWithPatternImage:[UIImage imageWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"MainViewBackgroundPattern" ofType:@"png"]]]];
         
         // Settings.bundle init
         //
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        if (![defaults objectForKey: @"AUTOSTART_CONVERSION_ON_OPEN_IN"])
+        if ([defaults  objectForKey: @"AUTOSTART_CONVERSION_ON_OPEN_IN"] == nil)
         {
+            /*
+            [defaults setBool:NO forKey:@"AUTOSTART_CONVERSION_ON_OPEN_IN"];
+            [defaults setInteger:60 forKey:@"MAX_REQUEST_TIMEOUT_IN_SECONDS"];
+            */
+            
             NSDictionary *defaultsDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
                                                 NO, @"AUTOSTART_CONVERSION_ON_OPEN_IN", 
                                                 60, @"MAX_REQUEST_TIMEOUT_IN_SECONDS", nil];
@@ -79,10 +84,20 @@
             
             document.originalFileSizeInBytes = [documentFileAttributes objectForKey: NSFileSize];
             document.addedTimeStamp = [NSDate date];
-            document.conversionState = [NSNumber numberWithInt:PENDING];
             document.originalFileName = [[url path] lastPathComponent];
             document.originalFileType = [url pathExtension];
             document.originalFileURL = url;
+            
+            
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            if ([defaults objectForKey:@"AUTOSTART_CONVERSION_ON_OPEN_IN"] == YES)
+            {
+                document.conversionState = [NSNumber numberWithInt:ACTIVE];
+            }
+            else
+            {
+                document.conversionState = [NSNumber numberWithInt:PENDING];
+            }
             
             [self.managedObjectContext save:nil];
             

@@ -260,9 +260,12 @@ UIAlertViewTagType;
     {
         NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
         selectedDocument.conversionState = [NSNumber numberWithInt:ACTIVE];
+        selectedDocument.conversionStartedTimeStamp = [NSDate date];
         [context save:nil];
         
-        [ASIHTTPRequest setDefaultTimeOutSeconds: 60];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        int timeout = (int)[defaults objectForKey:@"MAX_REQUEST_TIMEOUT_IN_SECONDS"];
+        [ASIHTTPRequest setDefaultTimeOutSeconds: timeout];
         
         ASIFormDataRequest *uploadRequest = [ASIFormDataRequest 
                                              requestWithURL: [NSURL URLWithString:@"http://dev.cloud.tenseventynine.com/PresentableServices/ConvertDocument"]];
@@ -291,6 +294,7 @@ UIAlertViewTagType;
         NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
         failedDocument = (Document*)[request.userInfo objectForKey: @"document"];
         failedDocument.conversionState = [NSNumber numberWithInt: FAILED];
+        failedDocument.conversionStartedTimeStamp = nil;
         [context save: nil];
         
         NSString *errorDescription = [NSString stringWithFormat:@"There was a problem with the conversion request (%@).\n\n  Would you like to try again?", [[request error] localizedDescription], nil];
@@ -405,6 +409,23 @@ UIAlertViewTagType;
         {
             docCell.thumbnailImage = nil;
         }
+        
+        // Check for documents that have been flagged as ACTIVE with no start time (from handleLoadULR)
+        // and see if we should autostart the conversion
+        //
+        /*
+        if ([document.conversionState intValue] == ACTIVE && 
+            document.conversionStartedTimeStamp == nil)
+        {
+            
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            bool shouldAutostart = (bool)[defaults objectForKey:@"AUTOSTART_CONVERSION_ON_OPEN_IN"];
+            if (shouldAutostart)
+            {
+                [self convertDocument: selectedDocument withIndexPath:indexPath];
+            }
+        }
+        */
     }
 
     - (void)insertNewObject
