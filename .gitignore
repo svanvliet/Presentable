@@ -1,0 +1,69 @@
+# OS X Generated Files
+# --------------------
+*~
+*.DS_Store
+.DS_Store?
+Icon?
+profile
+*.lock
+*.swp
+*.out
+
+# Xcode Specific Files
+# --------------------
+build/*
+*.pbxuser
+*.mode2v3
+*.mode1v3
+*.perspective
+*.perspectivev3
+*~.nib
+xcuserdata
+project.xcworkspace
+
+# Compiled Source Binaries
+# ------------------------
+*.com
+*.class
+*.dll
+*.exe
+*.pdb
+*.dll.config
+*.cache
+
+# VS General Stuff
+# ----------------
+*.suo
+*.user
+*.webtestresult
+
+# VS Upgrade stuff
+# ----------------
+UpgradeLog.XML
+_UpgradeReport_Files/
+
+# Directories 
+# -----------
+bin/
+obj/
+TestResults/
+
+# Web publish logs
+# ----------------
+*.Publish.xml
+
+# Compressed packages files
+# -------------------------
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases 
+# ------------------
+*.log
+*.sqlite

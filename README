@@ -1,0 +1,7 @@
+GUIDELINES FOR POSTING ISSUES
+
+When creating a Task in the Issues section, please use the naming convention "Task: NEW_TASK_NAME" and tag it with the "Tasks" label.  This will help us keep things organized once the log starts filling up.
+
+NOTES ON CONNECTING WITH XCODE 4
+
+Please make sure you create a working copy of this repository from Xcode 4 by using the "Connect to a Repository" wizard from the Welcome to Xcode screen.  When doing so, please make sure you use the HTTP connection string, as there are many bugs with the SSH connection within Xcode 4.
