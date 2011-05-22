@@ -47,6 +47,7 @@
 		40891AF6137A81100064ED35 /* DocumentUITableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40891AF5137A81100064ED35 /* DocumentUITableViewCell.m */; };
 		40891AFA137A8A8B0064ED35 /* DocumentUITableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40891AF9137A8A8B0064ED35 /* DocumentUITableViewCell.xib */; };
 		408EF0A3137F965C00FD9FD2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408EF0A2137F965C00FD9FD2 /* QuartzCore.framework */; };
+		40EF59F3138887AC0070E739 /* FolderTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 40EF59F2138887AC0070E739 /* FolderTab.png */; };
 		40FE966113808D35004E9569 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 40FE966013808D35004E9569 /* Entitlements.plist */; };
 /* End PBXBuildFile section */
 
@@ -121,6 +122,7 @@
 		40891AF5137A81100064ED35 /* DocumentUITableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocumentUITableViewCell.m; path = View/DocumentUITableViewCell.m; sourceTree = "<group>"; };
 		40891AF9137A8A8B0064ED35 /* DocumentUITableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DocumentUITableViewCell.xib; path = View/DocumentUITableViewCell.xib; sourceTree = "<group>"; };
 		408EF0A2137F965C00FD9FD2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		40EF59F2138887AC0070E739 /* FolderTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = FolderTab.png; path = Resources/FolderTab.png; sourceTree = "<group>"; };
 		40FE966013808D35004E9569 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Entitlements.plist; path = "Supporting Files/Entitlements.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -324,6 +326,7 @@
 		405341D91377840100185BF5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				40EF59F2138887AC0070E739 /* FolderTab.png */,
 				404C9CE21387151200A41886 /* MainViewBackgroundPattern.png */,
 				401F35551383BA77001FD11D /* Presentable Icon iPad.png */,
 				401F35531383BA09001FD11D /* Presentable Icon iPhone 4 Retina.png */,
@@ -424,6 +427,7 @@
 				401F35561383BA77001FD11D /* Presentable Icon iPad.png in Resources */,
 				402C0A311386C98300DADA1D /* Settings.bundle in Resources */,
 				404C9CE31387151200A41886 /* MainViewBackgroundPattern.png in Resources */,
+				40EF59F3138887AC0070E739 /* FolderTab.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

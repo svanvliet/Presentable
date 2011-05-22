@@ -113,14 +113,44 @@ UIAlertViewTagType;
         return [Document documentConversionStateTypeString: conversionState]; // Should be a localized value
     }
 
-    /*
+    - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section 
+    {
+        return 55;
+    }
+
     // METHOD:  tableView: viewForHeaderInSection:
     // 
     - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
     {
-        return [[UILabel alloc] init];
+        id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+        int conversionState = [[sectionInfo name] intValue];
+        
+        UIView *placeholderView = [[UIView alloc] init];
+        
+        NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"FolderTab" ofType:@"png"];
+        UIImage *image = [UIImage imageWithContentsOfFile: imagePath];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage: image];
+        [placeholderView addSubview: imageView];
+    
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(40, 14, 220, 24)];
+        label.backgroundColor = [UIColor whiteColor];
+        label.textColor = [UIColor blackColor];
+        label.layer.shadowColor = [[UIColor blackColor] CGColor];
+        label.layer.shadowOffset = CGSizeMake(0, 0);
+        label.layer.shadowRadius = 2.0f;
+        label.layer.shadowOpacity = 0.6f;
+        label.layer.shouldRasterize = YES;
+        label.clipsToBounds = NO;
+                           
+        label.font = [UIFont fontWithName: @"AmericanTypewriter-Bold" size: 17.0f];
+        //label.shadowColor = [UIColor whiteColor];
+        //label.shadowOffset = CGSizeMake(1, 1);
+        label.textAlignment = UITextAlignmentCenter;
+        label.text = [Document documentConversionStateTypeString: conversionState]; // Should be a localized value
+        [placeholderView addSubview: label];
+        
+        return placeholderView;
     }
-    */
 
     // METHOD:  tableView: willDisplayCell:
     // 
