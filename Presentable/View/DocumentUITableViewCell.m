@@ -34,6 +34,16 @@
         fileSizeLabel.text = withText;
     }
 
+    -(NSString*) fileTimestampLabelText
+    {
+        return fileTimestampLabel.text;
+    }
+
+    -(void) setFileTimestampLabelText:(NSString*)withText
+    {	
+        fileTimestampLabel.text = withText;
+    }
+
     -(UIImage*) thumbnailImage
     {
         return thumbnailImageView.image;

@@ -110,7 +110,8 @@
         return self.originalFileSizeInBytes;
     }
 
-    -(NSString*) fileDescription
+
+    -(NSString*) fileSizeDescription
     {
         if (!numberFormatter)
         {
@@ -119,6 +120,22 @@
             [numberFormatter setCurrencySymbol: @""];
             [numberFormatter setMaximumFractionDigits: 0];
         }
+        
+        NSString *description = nil;
+        if ([self.convertedFileSizeInBytes intValue] > 0)
+        {
+            description = [NSString stringWithFormat: @"File Size: %dKB", [self.convertedFileSizeInBytes intValue] / 1000];
+        }
+        else
+        {
+            description = [NSString stringWithFormat: @"File Size: %dKB", [self.originalFileSizeInBytes intValue] / 1000];
+        }
+        
+        return description;
+    }
+
+    -(NSString*) fileTimestampDescription
+    {
         
         if (!dateFormatter)
         {
@@ -130,11 +147,11 @@
         NSString *description = nil;
         if ([self.convertedFileSizeInBytes intValue] > 0)
         {
-            description = [NSString stringWithFormat: @"Converted: %@\nFile Size: %dKB", [dateFormatter stringFromDate: self.conversionCompletedTimeStamp], [self.convertedFileSizeInBytes intValue] / 1000];
+            description = [NSString stringWithFormat: @"Converted: %@", [dateFormatter stringFromDate: self.conversionCompletedTimeStamp]];
         }
         else
         {
-            description = [NSString stringWithFormat: @"Added: %@\nFile Size: %dKB", [dateFormatter stringFromDate: self.addedTimeStamp], [self.originalFileSizeInBytes intValue] / 1000];
+            description = [NSString stringWithFormat: @"Added: %@", [dateFormatter stringFromDate: self.addedTimeStamp]];
         }
         
         return description;

@@ -12,6 +12,7 @@
 @interface DocumentUITableViewCell : UITableViewCell 
 {
     IBOutlet UILabel *titleLabel;
+    IBOutlet UILabel *fileTimestampLabel;
     IBOutlet UILabel *fileSizeLabel;
     
     IBOutlet UIImageView *thumbnailImageView;
@@ -19,6 +20,7 @@
     
 }
     @property (nonatomic, retain) NSString * titleLabelText;
+    @property (nonatomic, retain) NSString * fileTimestampLabelText;
     @property (nonatomic, retain) NSString * fileSizeLabelText;
     @property (nonatomic, retain) UIImage * thumbnailImage;
 

@@ -429,7 +429,8 @@ UIAlertViewTagType;
         DocumentUITableViewCell *docCell = (DocumentUITableViewCell*)cell;
         
         docCell.titleLabelText = document.fileName;
-        docCell.fileSizeLabelText = document.fileDescription;
+        docCell.fileSizeLabelText = document.fileSizeDescription;
+        docCell.fileTimestampLabelText = document.fileTimestampDescription;
         
         if ([document.conversionState intValue] == COMPLETED)
         {
