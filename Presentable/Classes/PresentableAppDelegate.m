@@ -39,9 +39,8 @@
         
         //RootViewController *rootViewController = (RootViewController *)[self.navigationController topViewController];
         
-        //[self.window setBackgroundColor: [UIColor lightGrayColor]];
-        
         [[self window] setBackgroundColor: [UIColor colorWithPatternImage:[UIImage imageWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"MainViewBackgroundPattern" ofType:@"png"]]]];
+        
         
         // Settings.bundle init
         //

@@ -13,6 +13,7 @@
 #import "DocumentUITableViewCell.h"
 #import <QuartzCore/CALayer.h>
 #import <CoreGraphics/CGGeometry.h>
+#import "PresentableAppDelegate.h"
 
 typedef enum
 {
@@ -85,6 +86,15 @@ UIAlertViewTagType;
         return YES;
     }
 
+    -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+    {
+        /*
+        PresentableAppDelegate *appDelegate = (PresentableAppDelegate*)[[UIApplication sharedApplication] delegate];
+        
+        [[appDelegate window] setBackgroundColor: [UIColor colorWithPatternImage:[UIImage imageWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"MainViewBackgroundPattern" ofType:@"png"]]]];
+        */
+    }
+
     //
     // UITableView delegated methods
 
@@ -132,19 +142,10 @@ UIAlertViewTagType;
         UIImageView *imageView = [[UIImageView alloc] initWithImage: image];
         [placeholderView addSubview: imageView];
     
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(40, 14, 220, 24)];
-        label.backgroundColor = [UIColor whiteColor];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(49, 14, 220, 24)];
+                
         label.textColor = [UIColor blackColor];
-        label.layer.shadowColor = [[UIColor blackColor] CGColor];
-        label.layer.shadowOffset = CGSizeMake(0, 0);
-        label.layer.shadowRadius = 2.0f;
-        label.layer.shadowOpacity = 0.6f;
-        label.layer.shouldRasterize = YES;
-        label.clipsToBounds = NO;
-                           
         label.font = [UIFont fontWithName: @"AmericanTypewriter-Bold" size: 17.0f];
-        //label.shadowColor = [UIColor whiteColor];
-        //label.shadowOffset = CGSizeMake(1, 1);
         label.textAlignment = UITextAlignmentCenter;
         label.text = [Document documentConversionStateTypeString: conversionState]; // Should be a localized value
         [placeholderView addSubview: label];

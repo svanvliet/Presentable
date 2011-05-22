@@ -44,6 +44,7 @@
 		405341FD137789B300185BF5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 405341FC137789B300185BF5 /* SystemConfiguration.framework */; };
 		405341FF137789BD00185BF5 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 405341FE137789BD00185BF5 /* MobileCoreServices.framework */; };
 		40534202137789E000185BF5 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 40534201137789E000185BF5 /* libz.1.2.3.dylib */; };
+		40649B8113897DF100347DFC /* ItemBackgroundPattern.png in Resources */ = {isa = PBXBuildFile; fileRef = 40649B8013897DF100347DFC /* ItemBackgroundPattern.png */; };
 		40891AF6137A81100064ED35 /* DocumentUITableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40891AF5137A81100064ED35 /* DocumentUITableViewCell.m */; };
 		40891AFA137A8A8B0064ED35 /* DocumentUITableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40891AF9137A8A8B0064ED35 /* DocumentUITableViewCell.xib */; };
 		408EF0A3137F965C00FD9FD2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408EF0A2137F965C00FD9FD2 /* QuartzCore.framework */; };
@@ -118,6 +119,7 @@
 		405341FC137789B300185BF5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		405341FE137789BD00185BF5 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		40534201137789E000185BF5 /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
+		40649B8013897DF100347DFC /* ItemBackgroundPattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ItemBackgroundPattern.png; path = Resources/ItemBackgroundPattern.png; sourceTree = "<group>"; };
 		40891AF4137A81100064ED35 /* DocumentUITableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocumentUITableViewCell.h; path = View/DocumentUITableViewCell.h; sourceTree = "<group>"; };
 		40891AF5137A81100064ED35 /* DocumentUITableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocumentUITableViewCell.m; path = View/DocumentUITableViewCell.m; sourceTree = "<group>"; };
 		40891AF9137A8A8B0064ED35 /* DocumentUITableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DocumentUITableViewCell.xib; path = View/DocumentUITableViewCell.xib; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 		405341D91377840100185BF5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				40649B8013897DF100347DFC /* ItemBackgroundPattern.png */,
 				40EF59F2138887AC0070E739 /* FolderTab.png */,
 				404C9CE21387151200A41886 /* MainViewBackgroundPattern.png */,
 				401F35551383BA77001FD11D /* Presentable Icon iPad.png */,
@@ -428,6 +431,7 @@
 				402C0A311386C98300DADA1D /* Settings.bundle in Resources */,
 				404C9CE31387151200A41886 /* MainViewBackgroundPattern.png in Resources */,
 				40EF59F3138887AC0070E739 /* FolderTab.png in Resources */,
+				40649B8113897DF100347DFC /* ItemBackgroundPattern.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
