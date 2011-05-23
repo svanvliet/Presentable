@@ -439,9 +439,9 @@ UIAlertViewTagType;
         }
         else
         {
-            docCell.thumbnailImage = nil;
+            docCell.thumbnailImage = [UIImage imageWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"DefaultThumbnail" ofType:@"png"]];
         }
-        
+                
         // Check for documents that have been flagged as ACTIVE with no start time (from handleLoadULR)
         // and see if we should autostart the conversion
         //

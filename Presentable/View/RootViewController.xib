@@ -58,7 +58,6 @@
 										<int key="NSvFlags">266</int>
 										<string key="NSFrame">{{3, 3}, {468, 9}}</string>
 										<reference key="NSSuperview" ref="374285105"/>
-										<reference key="NSNextKeyView"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 									</object>
@@ -96,7 +95,7 @@
 				<bool key="IBUIBouncesZoom">NO</bool>
 				<int key="IBUISectionIndexMinimumDisplayRowCount">0</int>
 				<bool key="IBUIShowsSelectionImmediatelyOnTouchBegin">YES</bool>
-				<float key="IBUIRowHeight">112</float>
+				<float key="IBUIRowHeight">116</float>
 				<float key="IBUISectionHeaderHeight">22</float>
 				<float key="IBUISectionFooterHeight">22</float>
 				<reference key="IBUITableHeaderView" ref="470291522"/>

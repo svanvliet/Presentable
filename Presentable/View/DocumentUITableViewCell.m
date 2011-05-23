@@ -8,7 +8,9 @@
 
 #import "DocumentUITableViewCell.h"
 #import <QuartzCore/CALayer.h>
+#import "UIImage-Extensions.h"
 
+#define degreesToRadians(x) (M_PI * x / 180.0)
 
 @implementation DocumentUITableViewCell
 {
@@ -53,12 +55,21 @@
     {
         if (thumbnailImageView)
         {
-            thumbnailImageView.image = image;
+            thumbnailImageView.image = [image imageRotatedByDegrees: 350];
         }
     }
 
     - (void) awakeFromNib
     {
+        UIImage *originalImage = thumbnailImageView.image;
+        thumbnailImageView.image = [originalImage imageRotatedByDegrees: 350];
+        [originalImage release];
+        
+        /*
+        thumbnailImageView.transform = CGAffineTransformMakeRotation(degreesToRadians(-10)); //CGAffineTransformRotate(thumbnailImageView.transform, degreesToRadians(350));
+        thumbnailImageView.frame = CGRectMake(thumbnailImageView.frame.origin.x, thumbnailImageView.frame.origin.y, 90, 120);
+        */
+        
         /*
         thumbnailImageView.layer.shadowColor = [[UIColor blackColor] CGColor];
         thumbnailImageView.layer.shadowRadius = 2.0f;
