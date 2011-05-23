@@ -18,6 +18,7 @@
     // Property outlets for UI components to be accessible through IB
     
     IBOutlet UIProgressView *progressView;
+    IBOutlet UIView *statusView;
     
     // Selected item instance variables
     //

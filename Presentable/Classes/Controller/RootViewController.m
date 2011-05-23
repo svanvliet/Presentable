@@ -29,9 +29,11 @@ UIAlertViewTagType;
     // Instance method declarations for this application
 
     - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+    - (void)uploadStarted:(ASIHTTPRequest *)request;
     - (void)uploadFailed:(ASIHTTPRequest *)request;
     - (void)uploadFinished:(ASIHTTPRequest *)request;
     - (void)convertDocument:(Document*)document withIndexPath:(NSIndexPath*)indexPath;
+    - (void)showHideStatusView:(BOOL)shouldShow;
 
 @end
 
@@ -64,16 +66,21 @@ UIAlertViewTagType;
         [addButton release];
         
         self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
-        
-        // Setup UITableView sections    
-        
+                
         requestQueue = [[ASINetworkQueue alloc] init];
+        [requestQueue setMaxConcurrentOperationCount: 1];
         [requestQueue setShowAccurateProgress: YES];
         [requestQueue setUploadProgressDelegate:progressView];
         [requestQueue setDownloadProgressDelegate:progressView];
         [requestQueue setDelegate: self];
         [requestQueue setRequestDidFailSelector:@selector(uploadFailed:)];
         [requestQueue setRequestDidFinishSelector:@selector(uploadFinished:)];
+        
+        [requestQueue setRequestDidStartSelector:@selector(uploadStarted:)];
+        
+        // Hide the statusView area
+        //[(UITableView*)self.view setTableHeaderView: statusView];
+        [self showHideStatusView: NO];
     }
 
     //
@@ -93,6 +100,49 @@ UIAlertViewTagType;
         
         [[appDelegate window] setBackgroundColor: [UIColor colorWithPatternImage:[UIImage imageWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"MainViewBackgroundPattern" ofType:@"png"]]]];
         */
+    }
+
+    // METHOD: resetProgress:
+    //
+    -(void)resetProgress
+    {
+        progressView.progress = 0.0f;
+    }
+
+    // METHOD: showHideStatusView
+    //
+    -(void)showHideStatusView:(BOOL)shouldShow
+    {
+        UITableView *tableView = (UITableView*)self.view;
+        [tableView beginUpdates];
+        
+        
+        if (!shouldShow)
+        {
+            statusView.alpha = 1.0f;
+        }
+        else
+        {
+            statusView.alpha = 0.0f;
+        }
+        
+        [UIView beginAnimations:@"FadeInOut" context:NULL];
+        [UIView setAnimationDuration:0.75f];
+        
+        if (!shouldShow)
+        {
+            statusView.alpha = 0.0f;
+        }
+        else
+        {
+            statusView.alpha = 1.0f;
+        }
+        
+        [UIView commitAnimations];
+        [tableView endUpdates];
+        
+        [statusView setHidden: !shouldShow];
+        //[self.view layoutSubviews];
     }
 
     //
@@ -123,6 +173,8 @@ UIAlertViewTagType;
         return [Document documentConversionStateTypeString: conversionState]; // Should be a localized value
     }
 
+    // METHOD: tableView: heightForHeaderInSection
+    //
     - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section 
     {
         return 55;
@@ -288,7 +340,7 @@ UIAlertViewTagType;
     // METHOD
     //
     -(void)convertDocument:(Document*)document withIndexPath:(NSIndexPath*)indexPath
-    {
+    {    
         NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
         selectedDocument.conversionState = [NSNumber numberWithInt:ACTIVE];
         selectedDocument.conversionStartedTimeStamp = [NSDate date];
@@ -318,15 +370,29 @@ UIAlertViewTagType;
         #endif
     }
 
+    // METHOD: requestStarted:
+    //
+    -(void)uploadStarted:(ASIHTTPRequest *)request
+    {
+        [self showHideStatusView: YES];
+    }
+
     // METHOD:  uploadFailed:
     // 
     -(void)uploadFailed:(ASIHTTPRequest *)request
     {
+        [self showHideStatusView: NO];
+    
         NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
         failedDocument = (Document*)[request.userInfo objectForKey: @"document"];
         failedDocument.conversionState = [NSNumber numberWithInt: FAILED];
         failedDocument.conversionStartedTimeStamp = nil;
         [context save: nil];
+        
+        [request.userInfo release];
+        request.userInfo = nil;
+        
+        [self resetProgress];
         
         NSString *errorDescription = [NSString stringWithFormat:@"There was a problem with the conversion request (%@).\n\n  Would you like to try again?", [[request error] localizedDescription], nil];
         
@@ -342,6 +408,8 @@ UIAlertViewTagType;
     //
     -(void)uploadFinished:(ASIHTTPRequest *)request
     {       
+        [self showHideStatusView: NO];
+    
         NSString *documentID = nil;
         for (NSString *header in [request responseHeaders]) { 
             if ([[header lowercaseString] isEqualToString:@"documentid"]) { 
@@ -370,7 +438,10 @@ UIAlertViewTagType;
         
         [context save: nil]; // TODO: Implement exception handling
         
-        progressView.progress = 0.0; // TODO: Put this in a resetProgressIndicators method
+        [self resetProgress];
+        
+        [request.userInfo release];
+        request.userInfo = nil;
         
         /*
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Request Finished" message:path delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -408,6 +479,8 @@ UIAlertViewTagType;
     {
         [progressView release];
         progressView = nil;
+        [statusView release];
+        statusView = nil;
         [super viewDidUnload];
 
         // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
@@ -420,6 +493,7 @@ UIAlertViewTagType;
         [__managedObjectContext release];
         [progressView release];
         [requestQueue release];
+        [statusView release];
         [super dealloc];
     }
 

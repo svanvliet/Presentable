@@ -15,7 +15,6 @@
 @implementation DocumentUITableViewCell
 {
 }
-
     -(NSString*) titleLabelText
     {
         return titleLabel.text;
@@ -32,7 +31,7 @@
     }
 
     -(void) setFileSizeLabelText:(NSString*)withText
-    {	
+    {
         fileSizeLabel.text = withText;
     }
 
