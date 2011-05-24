@@ -17,8 +17,6 @@
 		4018C0681375010A00DEEB44 /* PresentableTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 4018C0671375010A00DEEB44 /* PresentableTests.h */; };
 		4018C06A1375010A00DEEB44 /* PresentableTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4018C0691375010A00DEEB44 /* PresentableTests.m */; };
 		4018C07B1375024A00DEEB44 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4018C0791375024A00DEEB44 /* MainWindow-iPad.xib */; };
-		401F35541383BA09001FD11D /* Presentable Icon iPhone 4 Retina.png in Resources */ = {isa = PBXBuildFile; fileRef = 401F35531383BA09001FD11D /* Presentable Icon iPhone 4 Retina.png */; };
-		401F35561383BA77001FD11D /* Presentable Icon iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 401F35551383BA77001FD11D /* Presentable Icon iPad.png */; };
 		40273A7C1389F20A0015A3F8 /* ThumbnailFrame.png in Resources */ = {isa = PBXBuildFile; fileRef = 40273A7B1389F20A0015A3F8 /* ThumbnailFrame.png */; };
 		40273A801389FE2A0015A3F8 /* UIImage-Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 40273A7F1389FE2A0015A3F8 /* UIImage-Extensions.m */; };
 		40273A82138A059C0015A3F8 /* DefaultThumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = 40273A81138A059C0015A3F8 /* DefaultThumbnail.png */; };
@@ -52,6 +50,10 @@
 		40891AF6137A81100064ED35 /* DocumentUITableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40891AF5137A81100064ED35 /* DocumentUITableViewCell.m */; };
 		40891AFA137A8A8B0064ED35 /* DocumentUITableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40891AF9137A8A8B0064ED35 /* DocumentUITableViewCell.xib */; };
 		408EF0A3137F965C00FD9FD2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408EF0A2137F965C00FD9FD2 /* QuartzCore.framework */; };
+		4095F967138B7BA30022D8DD /* Presentable Icon iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 4095F965138B7BA30022D8DD /* Presentable Icon iPad.png */; };
+		4095F968138B7BA30022D8DD /* Presentable Icon iPhone 4 Retina.png in Resources */ = {isa = PBXBuildFile; fileRef = 4095F966138B7BA30022D8DD /* Presentable Icon iPhone 4 Retina.png */; };
+		4095F96A138B7C0D0022D8DD /* Presentable Icon iPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 4095F969138B7C0D0022D8DD /* Presentable Icon iPhone.png */; };
+		4095F96C138B7C300022D8DD /* Presentable Icon iPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 4095F96B138B7C300022D8DD /* Presentable Icon iPhone.png */; };
 		40EF59F3138887AC0070E739 /* FolderTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 40EF59F2138887AC0070E739 /* FolderTab.png */; };
 		40FE966113808D35004E9569 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 40FE966013808D35004E9569 /* Entitlements.plist */; };
 /* End PBXBuildFile section */
@@ -76,8 +78,6 @@
 		4018C0671375010A00DEEB44 /* PresentableTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PresentableTests.h; sourceTree = "<group>"; };
 		4018C0691375010A00DEEB44 /* PresentableTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PresentableTests.m; sourceTree = "<group>"; };
 		4018C07A1375024A00DEEB44 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "iPad/en.lproj/MainWindow-iPad.xib"; sourceTree = "<group>"; };
-		401F35531383BA09001FD11D /* Presentable Icon iPhone 4 Retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Presentable Icon iPhone 4 Retina.png"; sourceTree = SOURCE_ROOT; };
-		401F35551383BA77001FD11D /* Presentable Icon iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Presentable Icon iPad.png"; sourceTree = SOURCE_ROOT; };
 		40273A7B1389F20A0015A3F8 /* ThumbnailFrame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ThumbnailFrame.png; path = Resources/ThumbnailFrame.png; sourceTree = "<group>"; };
 		40273A7E1389FE2A0015A3F8 /* UIImage-Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage-Extensions.h"; sourceTree = "<group>"; };
 		40273A7F1389FE2A0015A3F8 /* UIImage-Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage-Extensions.m"; sourceTree = "<group>"; };
@@ -133,6 +133,10 @@
 		40891AF5137A81100064ED35 /* DocumentUITableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocumentUITableViewCell.m; path = View/DocumentUITableViewCell.m; sourceTree = "<group>"; };
 		40891AF9137A8A8B0064ED35 /* DocumentUITableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DocumentUITableViewCell.xib; path = View/DocumentUITableViewCell.xib; sourceTree = "<group>"; };
 		408EF0A2137F965C00FD9FD2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		4095F965138B7BA30022D8DD /* Presentable Icon iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Presentable Icon iPad.png"; path = "Resources/Presentable Icon iPad.png"; sourceTree = "<group>"; };
+		4095F966138B7BA30022D8DD /* Presentable Icon iPhone 4 Retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Presentable Icon iPhone 4 Retina.png"; path = "Resources/Presentable Icon iPhone 4 Retina.png"; sourceTree = "<group>"; };
+		4095F969138B7C0D0022D8DD /* Presentable Icon iPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Presentable Icon iPhone.png"; path = "Resources/Presentable Icon iPhone.png"; sourceTree = "<group>"; };
+		4095F96B138B7C300022D8DD /* Presentable Icon iPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Presentable Icon iPhone.png"; sourceTree = "<group>"; };
 		40EF59F2138887AC0070E739 /* FolderTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = FolderTab.png; path = Resources/FolderTab.png; sourceTree = "<group>"; };
 		40FE966013808D35004E9569 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Entitlements.plist; path = "Supporting Files/Entitlements.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -170,6 +174,7 @@
 		4018C0251375010900DEEB44 = {
 			isa = PBXGroup;
 			children = (
+				4095F96B138B7C300022D8DD /* Presentable Icon iPhone.png */,
 				4018C03C1375010A00DEEB44 /* Presentable */,
 				4018C0601375010A00DEEB44 /* PresentableTests */,
 				4018C0331375010A00DEEB44 /* Frameworks */,
@@ -339,14 +344,15 @@
 		405341D91377840100185BF5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4095F969138B7C0D0022D8DD /* Presentable Icon iPhone.png */,
+				4095F965138B7BA30022D8DD /* Presentable Icon iPad.png */,
+				4095F966138B7BA30022D8DD /* Presentable Icon iPhone 4 Retina.png */,
 				40273A83138A0DFF0015A3F8 /* ItemBackgroundLipBottom.png */,
 				40273A81138A059C0015A3F8 /* DefaultThumbnail.png */,
 				40273A7B1389F20A0015A3F8 /* ThumbnailFrame.png */,
 				40649B8013897DF100347DFC /* ItemBackgroundPattern.png */,
 				40EF59F2138887AC0070E739 /* FolderTab.png */,
 				404C9CE21387151200A41886 /* MainViewBackgroundPattern.png */,
-				401F35551383BA77001FD11D /* Presentable Icon iPad.png */,
-				401F35531383BA09001FD11D /* Presentable Icon iPhone 4 Retina.png */,
 				405341DA1377841400185BF5 /* SamplePresentation.pptx */,
 			);
 			name = Resources;
@@ -440,8 +446,6 @@
 				405341E31377845A00185BF5 /* InfoPlist.strings in Resources */,
 				40891AFA137A8A8B0064ED35 /* DocumentUITableViewCell.xib in Resources */,
 				40FE966113808D35004E9569 /* Entitlements.plist in Resources */,
-				401F35541383BA09001FD11D /* Presentable Icon iPhone 4 Retina.png in Resources */,
-				401F35561383BA77001FD11D /* Presentable Icon iPad.png in Resources */,
 				402C0A311386C98300DADA1D /* Settings.bundle in Resources */,
 				404C9CE31387151200A41886 /* MainViewBackgroundPattern.png in Resources */,
 				40EF59F3138887AC0070E739 /* FolderTab.png in Resources */,
@@ -449,6 +453,10 @@
 				40273A7C1389F20A0015A3F8 /* ThumbnailFrame.png in Resources */,
 				40273A82138A059C0015A3F8 /* DefaultThumbnail.png in Resources */,
 				40273A84138A0DFF0015A3F8 /* ItemBackgroundLipBottom.png in Resources */,
+				4095F967138B7BA30022D8DD /* Presentable Icon iPad.png in Resources */,
+				4095F968138B7BA30022D8DD /* Presentable Icon iPhone 4 Retina.png in Resources */,
+				4095F96A138B7C0D0022D8DD /* Presentable Icon iPhone.png in Resources */,
+				4095F96C138B7C300022D8DD /* Presentable Icon iPhone.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -716,6 +724,61 @@
 			};
 			name = Release;
 		};
+		4095F962138B71A40022D8DD /* App Store Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: tenseventynine, LLC";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CB64ABD8-8520-484B-95AC-102AC631840B";
+				SDKROOT = iphoneos;
+			};
+			name = "App Store Distribution";
+		};
+		4095F963138B71A40022D8DD /* App Store Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = "Presentable/Supporting Files/Entitlements.plist";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Presentable/Supporting Files/Presentable-Prefix.pch";
+				INFOPLIST_FILE = "Presentable/Supporting Files/Presentable-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = "App Store Distribution";
+		};
+		4095F964138B71A40022D8DD /* App Store Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Presentable.app/Presentable";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PresentableTests/PresentableTests-Prefix.pch";
+				INFOPLIST_FILE = "PresentableTests/PresentableTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = "App Store Distribution";
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -725,6 +788,7 @@
 				4018C06B1375010A00DEEB44 /* Debug */,
 				4018C06C1375010A00DEEB44 /* Release */,
 				400652E0138A285C00A7E470 /* Distribution */,
+				4095F962138B71A40022D8DD /* App Store Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -735,6 +799,7 @@
 				4018C06E1375010A00DEEB44 /* Debug */,
 				4018C06F1375010A00DEEB44 /* Release */,
 				400652E1138A285C00A7E470 /* Distribution */,
+				4095F963138B71A40022D8DD /* App Store Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -745,6 +810,7 @@
 				4018C0711375010A00DEEB44 /* Debug */,
 				4018C0721375010A00DEEB44 /* Release */,
 				400652E2138A285C00A7E470 /* Distribution */,
+				4095F964138B71A40022D8DD /* App Store Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
