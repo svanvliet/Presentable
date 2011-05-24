@@ -113,34 +113,23 @@ UIAlertViewTagType;
     //
     -(void)showHideStatusView:(BOOL)shouldShow
     {
+        /*
         UITableView *tableView = (UITableView*)self.view;
-        [tableView beginUpdates];
         
+        [tableView setTableHeaderView: nil];
         
-        if (!shouldShow)
+        if (shouldShow)
         {
-            statusView.alpha = 1.0f;
+            [statusView setFrame: CGRectMake(statusView.frame.origin.x, statusView.frame.origin.y, statusView.frame.size.width, 0.0f)];
         }
         else
-        {
-            statusView.alpha = 0.0f;
+         {
+                 [statusView setFrame: CGRectMake(statusView.frame.origin.x, statusView.frame.origin.y, statusView.frame.size.width, 30.0f)];            
         }
         
-        [UIView beginAnimations:@"FadeInOut" context:NULL];
-        [UIView setAnimationDuration:0.75f];
-        
-        if (!shouldShow)
-        {
-            statusView.alpha = 0.0f;
-        }
-        else
-        {
-            statusView.alpha = 1.0f;
-        }
-        
-        [UIView commitAnimations];
-        [tableView endUpdates];
-        
+        [tableView setTableHeaderView: statusView];
+        */
+       
         [statusView setHidden: !shouldShow];
         //[self.view layoutSubviews];
     }
