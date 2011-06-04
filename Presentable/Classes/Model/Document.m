@@ -83,6 +83,8 @@
     @dynamic conversionStartedTimeStamp;
     @dynamic conversionCompletedTimeStamp;
 
+    @dynamic hasBeenRead;
+
     -(NSString*) fileName
     {
         if (self.convertedFileName != nil)
