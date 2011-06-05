@@ -283,6 +283,11 @@ UIAlertViewTagType;
         if (editingStyle == UITableViewCellEditingStyleDelete)
         {
             NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+            Document *document = (Document*)[self.fetchedResultsController objectAtIndexPath:indexPath];
+            
+            [[NSFileManager defaultManager] removeItemAtURL: document.originalFileURL error:nil];
+            [[NSFileManager defaultManager] removeItemAtURL: document.convertedFileURL error:nil];
+            
             [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
             
             NSError *error = nil;
@@ -429,6 +434,9 @@ UIAlertViewTagType;
         document.thumbnailImageData = UIImagePNGRepresentation([Document PDFPageThumbnailImage: document.convertedFileURL]);
         document.isUnread = [NSNumber numberWithInt:YES];
         
+        [[NSFileManager defaultManager] removeItemAtURL: document.originalFileURL error:nil];
+        document.originalFileURL = nil;
+        
         [context save: nil]; // TODO: Implement exception handling
         
         [self resetProgress];
@@ -437,6 +445,7 @@ UIAlertViewTagType;
         request.userInfo = nil;
         
         [[[UIApplication sharedApplication] delegate] updateApplicationIconBadgeNumber];
+        
         
         /*
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Request Finished" message:path delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -529,8 +538,18 @@ UIAlertViewTagType;
         */
     }
 
+    - (NSString*) stringWithRandomUUID 
+    {
+        CFUUIDRef	uuidObj = CFUUIDCreate(nil);
+        NSString	*uuidString = (NSString*)CFUUIDCreateString(nil, uuidObj);
+        CFRelease(uuidObj);
+        return [uuidString autorelease];
+    }
+
     - (void)insertNewObject
     {
+        NSError *error = nil;
+    
         // Create a new instance of the entity managed by the fetched results controller.
         NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
         NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
@@ -541,22 +560,29 @@ UIAlertViewTagType;
         //NSNumber *randomNumber = [NSNumber numberWithUnsignedInteger: random() % 4];
         
         NSURL *fileURL = [[NSBundle mainBundle] URLForResource:@"SamplePresentation" withExtension:@"pptx"];
+        NSURL *documentsURL = [[[fileURL URLByDeletingLastPathComponent] URLByDeletingLastPathComponent] URLByAppendingPathComponent: @"Documents"];
+        NSURL *copiedFileURL = [documentsURL URLByAppendingPathComponent: [NSString stringWithFormat: @"SamplePresentation-%@.pptx", [self stringWithRandomUUID]]];
         
+        [[NSFileManager defaultManager] copyItemAtURL:fileURL toURL:copiedFileURL error:&error];
+        if (error)
+        {
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
         
         NSError *fileAccessError = nil;
-        NSDictionary *documentFileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath: [fileURL path] error: &fileAccessError]; // TODO: Implement exception handling
+        NSDictionary *documentFileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath: [copiedFileURL path] error: &fileAccessError]; // TODO: Implement exception handling
         
         
-        [newManagedObject setValue:fileURL forKey:@"originalFileURL"];
+        [newManagedObject setValue:copiedFileURL forKey:@"originalFileURL"];
         [newManagedObject setValue:[documentFileAttributes objectForKey: NSFileSize] forKey:@"originalFileSizeInBytes"];
         [newManagedObject setValue:@"pptx" forKey:@"originalFileType"];
                 
-        [newManagedObject setValue:[[fileURL path] lastPathComponent] forKey:@"originalFileName"];
+        [newManagedObject setValue:[[copiedFileURL path] lastPathComponent] forKey:@"originalFileName"];
         [newManagedObject setValue:[NSNumber numberWithInt:PENDING] forKey:@"conversionState"];
         [newManagedObject setValue:[NSDate date] forKey:@"addedTimeStamp"];
         
         // Save the context.
-        NSError *error = nil;
         if (![context save:&error])
         {
             /*
@@ -567,6 +593,9 @@ UIAlertViewTagType;
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         }
+        
+        //[documentsURL release];
+        //[fileURL release];
     }
 
     #pragma mark - Fetched results controller
