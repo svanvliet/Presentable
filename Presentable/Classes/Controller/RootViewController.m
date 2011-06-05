@@ -219,7 +219,7 @@ UIAlertViewTagType;
         return cell;
     }
 
-    // METHOD:  tableVIew: canMoveRowAtIndexPath:
+    // METHOD:  tableView: canMoveRowAtIndexPath:
     //
     - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
     {
@@ -429,13 +429,14 @@ UIAlertViewTagType;
         document.thumbnailImageData = UIImagePNGRepresentation([Document PDFPageThumbnailImage: document.convertedFileURL]);
         document.isUnread = [NSNumber numberWithInt:YES];
         
-        
         [context save: nil]; // TODO: Implement exception handling
         
         [self resetProgress];
         
         [request.userInfo release];
         request.userInfo = nil;
+        
+        [[[UIApplication sharedApplication] delegate] updateApplicationIconBadgeNumber];
         
         /*
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Request Finished" message:path delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];

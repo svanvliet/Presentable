@@ -29,6 +29,7 @@
 
     - (void)saveContext;
     - (NSURL *)applicationDocumentsDirectory;
+    - (void)updateApplicationIconBadgeNumber;
 
 @end
 
