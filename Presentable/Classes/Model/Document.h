@@ -55,6 +55,6 @@ DocumentConversionStateType;
     @property (readonly) NSString * fileTimestampDescription;
     @property (readonly) NSURL * fileURL;
 
-    @property (nonatomic, retain) NSNumber * hasBeenRead;
+    @property (nonatomic, retain) NSNumber * isUnread;
 
 @end

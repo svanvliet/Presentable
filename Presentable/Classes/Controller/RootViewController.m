@@ -247,7 +247,8 @@ UIAlertViewTagType;
                 
             case COMPLETED:
                 
-                selectedDocument.hasBeenRead = [NSNumber numberWithInt:YES];
+                selectedDocument.isUnread = [NSNumber numberWithInt:NO];
+                [context save: nil];
                 
                 documentController = [UIDocumentInteractionController interactionControllerWithURL:selectedDocument.convertedFileURL];
                 documentController.delegate = self;
@@ -426,7 +427,8 @@ UIAlertViewTagType;
         document.convertedFileURL = [NSURL fileURLWithPath: path];
         document.conversionState = [NSNumber numberWithInt: COMPLETED];
         document.thumbnailImageData = UIImagePNGRepresentation([Document PDFPageThumbnailImage: document.convertedFileURL]);
-        document.hasBeenRead = NO;
+        document.isUnread = [NSNumber numberWithInt:YES];
+        
         
         [context save: nil]; // TODO: Implement exception handling
         

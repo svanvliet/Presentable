@@ -83,7 +83,7 @@
     @dynamic conversionStartedTimeStamp;
     @dynamic conversionCompletedTimeStamp;
 
-    @dynamic hasBeenRead;
+    @dynamic isUnread;
 
     -(NSString*) fileName
     {

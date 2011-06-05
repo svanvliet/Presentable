@@ -115,6 +115,47 @@
 
     - (void)applicationDidEnterBackground:(UIApplication *)application
     {
+        NSManagedObjectContext *moc = [self managedObjectContext];
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Document" inManagedObjectContext:moc];
+        [request setEntity:entity];
+        
+        // Specify that the request should return dictionaries.
+        [request setResultType:NSDictionaryResultType];
+        
+        // Create an expression for the key path.
+        NSExpression *keyPathExpression = [NSExpression expressionForKeyPath:@"isUnread"];
+        
+        // Create an expression to represent the count value at the key path 'hasBeenRead'
+        NSExpression *countExpression = [NSExpression expressionForFunction:@"sum:" arguments:[NSArray arrayWithObject:keyPathExpression]];
+        
+        // Create an expression description using the countExpression and returning a date.
+        NSExpressionDescription *expressionDescription = [[NSExpressionDescription alloc] init];
+        
+        // The name is the key that will be used in the dictionary for the return value.
+        [expressionDescription setName:@"unreadCount"];
+        [expressionDescription setExpression:countExpression];        
+        [expressionDescription setExpressionResultType:NSInteger64AttributeType];
+        
+        // Set the request's properties to fetch just the property represented by the expressions.
+        [request setPropertiesToFetch:[NSArray arrayWithObject:expressionDescription]];
+        
+        // Execute the fetch.
+        NSError *error = nil;
+        NSArray *objects = [moc executeFetchRequest:request error:&error];
+        if (objects == nil) {
+            // Handle the error.
+        }
+        else {
+            if ([objects count] > 0) {
+                //NSLog(@"Unread Count: %@", [[objects objectAtIndex:0] valueForKey:@"unreadCount"]);
+                [[UIApplication sharedApplication]	setApplicationIconBadgeNumber:[[[objects objectAtIndex:0] valueForKey:@"unreadCount"] intValue]];
+            }
+        }
+        
+        [expressionDescription release];
+        [request release];
+        
         /*
          Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
          If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
