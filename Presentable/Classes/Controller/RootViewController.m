@@ -65,7 +65,7 @@ UIAlertViewTagType;
         self.navigationItem.rightBarButtonItem = addButton;
         [addButton release];
         
-        self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+        self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
                 
         requestQueue = [[ASINetworkQueue alloc] init];
         [requestQueue setMaxConcurrentOperationCount: 1];
@@ -113,6 +113,20 @@ UIAlertViewTagType;
     //
     -(void)showHideStatusView:(BOOL)shouldShow
     {
+        [statusView setHidden: !shouldShow];
+    
+        UITableView *tableView = (UITableView*)self.view;
+        
+        if (shouldShow)
+        {
+            [tableView setTableHeaderView: statusView];
+            //tableView.contentOffset = CGPointMake(0, -1 * statusView.frame.size.height);
+        }
+        else
+        {
+            [tableView setTableHeaderView: nil];
+            //tableView.contentOffset = CGPointMake(0, statusView.frame.size.height);
+        }
         
         /*
         UITableView *tableView = (UITableView*)self.view;
@@ -131,7 +145,6 @@ UIAlertViewTagType;
         [tableView setTableHeaderView: statusView];
         */
        
-        [statusView setHidden: !shouldShow];
         //[self.view layoutSubviews];
     }
 
@@ -187,7 +200,7 @@ UIAlertViewTagType;
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(49, 14, 220, 24)];
                 
         label.textColor = [UIColor blackColor];
-        label.font = [UIFont fontWithName: @"AmericanTypewriter-Bold" size: 17.0f];
+        label.font = [UIFont fontWithName: @"HelveticaNeue-Bold" size: 16.0f];
         label.textAlignment = UITextAlignmentCenter;
         label.text = [Document documentConversionStateTypeString: conversionState]; // Should be a localized value
         [placeholderView addSubview: label];
@@ -447,7 +460,7 @@ UIAlertViewTagType;
         [request.userInfo release];
         request.userInfo = nil;
         
-        [[[UIApplication sharedApplication] delegate] updateApplicationIconBadgeNumber];
+        [(PresentableAppDelegate*)[[UIApplication sharedApplication] delegate] updateApplicationIconBadgeNumber];
         
         
         /*

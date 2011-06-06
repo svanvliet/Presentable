@@ -29,7 +29,7 @@
     {
         UIImage *image = nil;
         
-        CGFloat width = 320.0f;
+        CGFloat width = 120.0f;
         CGPDFDocumentRef pdfDocumentRef = CGPDFDocumentCreateWithURL((CFURLRef)PDFURL);
         CGPDFPageRef pdfFirstPage = CGPDFDocumentGetPage(pdfDocumentRef, 1);
         

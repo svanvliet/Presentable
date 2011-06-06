@@ -20,7 +20,6 @@
 		40273A7C1389F20A0015A3F8 /* ThumbnailFrame.png in Resources */ = {isa = PBXBuildFile; fileRef = 40273A7B1389F20A0015A3F8 /* ThumbnailFrame.png */; };
 		40273A801389FE2A0015A3F8 /* UIImage-Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 40273A7F1389FE2A0015A3F8 /* UIImage-Extensions.m */; };
 		40273A82138A059C0015A3F8 /* DefaultThumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = 40273A81138A059C0015A3F8 /* DefaultThumbnail.png */; };
-		40273A84138A0DFF0015A3F8 /* ItemBackgroundLipBottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 40273A83138A0DFF0015A3F8 /* ItemBackgroundLipBottom.png */; };
 		402C0A311386C98300DADA1D /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 402C0A301386C98300DADA1D /* Settings.bundle */; };
 		404C9CE31387151200A41886 /* MainViewBackgroundPattern.png in Resources */ = {isa = PBXBuildFile; fileRef = 404C9CE21387151200A41886 /* MainViewBackgroundPattern.png */; };
 		404CB1D013778A9500D6773E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 404CB1CF13778A9500D6773E /* CoreGraphics.framework */; };
@@ -81,7 +80,6 @@
 		40273A7E1389FE2A0015A3F8 /* UIImage-Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage-Extensions.h"; sourceTree = "<group>"; };
 		40273A7F1389FE2A0015A3F8 /* UIImage-Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage-Extensions.m"; sourceTree = "<group>"; };
 		40273A81138A059C0015A3F8 /* DefaultThumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DefaultThumbnail.png; path = Resources/DefaultThumbnail.png; sourceTree = "<group>"; };
-		40273A83138A0DFF0015A3F8 /* ItemBackgroundLipBottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ItemBackgroundLipBottom.png; path = Resources/ItemBackgroundLipBottom.png; sourceTree = "<group>"; };
 		402C0A301386C98300DADA1D /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = "Supporting Files/Settings.bundle"; sourceTree = "<group>"; };
 		404C9CE21387151200A41886 /* MainViewBackgroundPattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MainViewBackgroundPattern.png; path = Resources/MainViewBackgroundPattern.png; sourceTree = "<group>"; };
 		404CB1CB13778A2600D6773E /* Presentable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Presentable.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -344,7 +342,6 @@
 				40E794F4139441C000E767FC /* Presentable Icon iPhone.png */,
 				4095F965138B7BA30022D8DD /* Presentable Icon iPad.png */,
 				4095F966138B7BA30022D8DD /* Presentable Icon iPhone 4 Retina.png */,
-				40273A83138A0DFF0015A3F8 /* ItemBackgroundLipBottom.png */,
 				40273A81138A059C0015A3F8 /* DefaultThumbnail.png */,
 				40273A7B1389F20A0015A3F8 /* ThumbnailFrame.png */,
 				40649B8013897DF100347DFC /* ItemBackgroundPattern.png */,
@@ -449,7 +446,6 @@
 				40649B8113897DF100347DFC /* ItemBackgroundPattern.png in Resources */,
 				40273A7C1389F20A0015A3F8 /* ThumbnailFrame.png in Resources */,
 				40273A82138A059C0015A3F8 /* DefaultThumbnail.png in Resources */,
-				40273A84138A0DFF0015A3F8 /* ItemBackgroundLipBottom.png in Resources */,
 				4095F967138B7BA30022D8DD /* Presentable Icon iPad.png in Resources */,
 				4095F968138B7BA30022D8DD /* Presentable Icon iPhone 4 Retina.png in Resources */,
 				40E794F5139441C000E767FC /* Presentable Icon iPhone.png in Resources */,

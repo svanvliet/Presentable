@@ -39,8 +39,15 @@
         
         //RootViewController *rootViewController = (RootViewController *)[self.navigationController topViewController];
         
-        [[self window] setBackgroundColor: [UIColor colorWithPatternImage:[UIImage imageWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"MainViewBackgroundPattern" ofType:@"png"]]]];
+        // Light Grey
+        //[[self window] setBackgroundColor:[UIColor colorWithRed:0.561 green:0.651 blue:0.722 alpha:1.0]];
         
+        // Leopard Folder Blue
+        [[self window] setBackgroundColor:[UIColor colorWithRed:0.627 green:0.753 blue:0.851 alpha:1.0]];
+        
+        /*
+        [[self window] setBackgroundColor: [UIColor colorWithPatternImage:[UIImage imageWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"MainViewBackgroundPattern" ofType:@"png"]]]];
+        */
         
         // Settings.bundle init
         //
@@ -89,7 +96,7 @@
             
             
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            if ([defaults objectForKey:@"AUTOSTART_CONVERSION_ON_OPEN_IN"] == YES)
+            if ([defaults objectForKey:@"AUTOSTART_CONVERSION_ON_OPEN_IN"] == [NSNumber numberWithBool:YES])
             {
                 document.conversionState = [NSNumber numberWithInt:ACTIVE];
             }

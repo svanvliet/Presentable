@@ -204,6 +204,10 @@ CGFloat RadiansToDegrees(CGFloat radians) {return radians * 180/M_PI;};
     UIGraphicsBeginImageContext(rotatedSize);
     CGContextRef bitmap = UIGraphicsGetCurrentContext();
     
+    CGContextSetInterpolationQuality(bitmap, kCGInterpolationHigh);
+    CGContextSetAllowsAntialiasing(bitmap, true);
+    CGContextSetShouldAntialias(bitmap, true);
+    
     // Move the origin to the middle of the image so we will rotate and scale around the center.
     CGContextTranslateCTM(bitmap, rotatedSize.width/2, rotatedSize.height/2);
     
