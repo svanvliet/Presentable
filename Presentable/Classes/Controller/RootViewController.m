@@ -113,6 +113,7 @@ UIAlertViewTagType;
     //
     -(void)showHideStatusView:(BOOL)shouldShow
     {
+        
         /*
         UITableView *tableView = (UITableView*)self.view;
         
@@ -371,6 +372,7 @@ UIAlertViewTagType;
     //
     -(void)uploadStarted:(ASIHTTPRequest *)request
     {
+        [self resetProgress];
         [self showHideStatusView: YES];
     }
 
@@ -378,6 +380,7 @@ UIAlertViewTagType;
     // 
     -(void)uploadFailed:(ASIHTTPRequest *)request
     {
+        [self resetProgress];
         [self showHideStatusView: NO];
     
         NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
