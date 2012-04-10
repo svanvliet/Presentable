@@ -53,6 +53,7 @@
 		40E794F5139441C000E767FC /* Presentable Icon iPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 40E794F4139441C000E767FC /* Presentable Icon iPhone.png */; };
 		40EF59F3138887AC0070E739 /* FolderTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 40EF59F2138887AC0070E739 /* FolderTab.png */; };
 		40FE966113808D35004E9569 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 40FE966013808D35004E9569 /* Entitlements.plist */; };
+		DD417C3215348B24001E662E /* newDocumentIndicator.png in Resources */ = {isa = PBXBuildFile; fileRef = DD417C3115348B24001E662E /* newDocumentIndicator.png */; };
 		DDC062581533FB4D006CF10E /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DDC062571533FB4D006CF10E /* libz.1.2.5.dylib */; };
 /* End PBXBuildFile section */
 
@@ -134,6 +135,7 @@
 		40E794F4139441C000E767FC /* Presentable Icon iPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Presentable Icon iPhone.png"; path = "Resources/Presentable Icon iPhone.png"; sourceTree = "<group>"; };
 		40EF59F2138887AC0070E739 /* FolderTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = FolderTab.png; path = Resources/FolderTab.png; sourceTree = "<group>"; };
 		40FE966013808D35004E9569 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Entitlements.plist; path = "Supporting Files/Entitlements.plist"; sourceTree = "<group>"; };
+		DD417C3115348B24001E662E /* newDocumentIndicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newDocumentIndicator.png; sourceTree = "<group>"; };
 		DDC062571533FB4D006CF10E /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -339,6 +341,7 @@
 		405341D91377840100185BF5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DD417C3115348B24001E662E /* newDocumentIndicator.png */,
 				40E794F4139441C000E767FC /* Presentable Icon iPhone.png */,
 				4095F965138B7BA30022D8DD /* Presentable Icon iPad.png */,
 				4095F966138B7BA30022D8DD /* Presentable Icon iPhone 4 Retina.png */,
@@ -450,6 +453,7 @@
 				4095F967138B7BA30022D8DD /* Presentable Icon iPad.png in Resources */,
 				4095F968138B7BA30022D8DD /* Presentable Icon iPhone 4 Retina.png in Resources */,
 				40E794F5139441C000E767FC /* Presentable Icon iPhone.png in Resources */,
+				DD417C3215348B24001E662E /* newDocumentIndicator.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,14 +558,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chad Cook (3XXKE75PU7)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "131BC556-D1AA-4A50-83AF-D5D94EBC68E3";
 				SDKROOT = iphoneos;
 			};
 			name = Distribution;
@@ -627,14 +631,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chad Cook (3XXKE75PU7)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "131BC556-D1AA-4A50-83AF-D5D94EBC68E3";
 				SDKROOT = iphoneos;
 			};
 			name = Release;

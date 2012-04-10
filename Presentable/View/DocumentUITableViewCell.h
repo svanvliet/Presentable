@@ -16,6 +16,7 @@
     IBOutlet UILabel *fileSizeLabel;
     
     IBOutlet UIImageView *thumbnailImageView;
+    IBOutlet UIImageView *newDocumentIndicatorView;
     IBOutlet UIView *itemView;
     
 }
@@ -23,5 +24,8 @@
     @property (nonatomic, retain) NSString * fileTimestampLabelText;
     @property (nonatomic, retain) NSString * fileSizeLabelText;
     @property (nonatomic, retain) UIImage * thumbnailImage;
+
+    @property (nonatomic, retain) UIImage *
+        newDocumentIdicatorImage;
 
 @end

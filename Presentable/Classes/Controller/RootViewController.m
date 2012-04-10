@@ -526,10 +526,13 @@ UIAlertViewTagType;
         if(document.isUnread == [NSNumber numberWithInt:YES])
         {
             docCell.titleLabelText = [NSString stringWithFormat:@"***NEW*** %@", document.fileName];
+            NSString *imagePath = [[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/newDocumentIndicator.png"];
+            docCell.newDocumentIdicatorImage = [UIImage imageWithContentsOfFile:imagePath];
         }
         else
         {
             docCell.titleLabelText = document.fileName;
+            docCell.newDocumentIdicatorImage = nil;
         }
         
         

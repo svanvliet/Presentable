@@ -58,6 +58,20 @@
         }
     }
 
+    -(UIImage*) newDocumentIdicatorImage
+    {
+        return newDocumentIndicatorView.image;
+    }
+
+    -(void) setNewDocumentIdicatorImage:(UIImage *)image
+    {
+        if (newDocumentIndicatorView)
+        {
+            newDocumentIndicatorView.image = [image imageRotatedByDegrees: 350];
+        }
+    }
+ 
+
     - (void) awakeFromNib
     {
         UIImage *originalImage = thumbnailImageView.image;
