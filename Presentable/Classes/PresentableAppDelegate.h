@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface PresentableAppDelegate : NSObject <UIApplicationDelegate> 
-{
+{ 
 }
     //
     // Property outlets for UI components to be accessible through IB
