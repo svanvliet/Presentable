@@ -523,7 +523,16 @@ UIAlertViewTagType;
         
         DocumentUITableViewCell *docCell = (DocumentUITableViewCell*)cell;
         
-        docCell.titleLabelText = document.fileName;
+        if(document.isUnread == [NSNumber numberWithInt:YES])
+        {
+            docCell.titleLabelText = [NSString stringWithFormat:@"***NEW*** %@", document.fileName];
+        }
+        else
+        {
+            docCell.titleLabelText = document.fileName;
+        }
+        
+        
         docCell.fileSizeLabelText = document.fileSizeDescription;
         docCell.fileTimestampLabelText = document.fileTimestampDescription;
         

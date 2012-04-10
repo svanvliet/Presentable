@@ -44,7 +44,6 @@
 		405341FB137789AD00185BF5 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 405341FA137789AD00185BF5 /* CFNetwork.framework */; };
 		405341FD137789B300185BF5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 405341FC137789B300185BF5 /* SystemConfiguration.framework */; };
 		405341FF137789BD00185BF5 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 405341FE137789BD00185BF5 /* MobileCoreServices.framework */; };
-		40534202137789E000185BF5 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 40534201137789E000185BF5 /* libz.1.2.3.dylib */; };
 		40649B8113897DF100347DFC /* ItemBackgroundPattern.png in Resources */ = {isa = PBXBuildFile; fileRef = 40649B8013897DF100347DFC /* ItemBackgroundPattern.png */; };
 		40891AF6137A81100064ED35 /* DocumentUITableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40891AF5137A81100064ED35 /* DocumentUITableViewCell.m */; };
 		40891AFA137A8A8B0064ED35 /* DocumentUITableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40891AF9137A8A8B0064ED35 /* DocumentUITableViewCell.xib */; };
@@ -54,6 +53,7 @@
 		40E794F5139441C000E767FC /* Presentable Icon iPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 40E794F4139441C000E767FC /* Presentable Icon iPhone.png */; };
 		40EF59F3138887AC0070E739 /* FolderTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 40EF59F2138887AC0070E739 /* FolderTab.png */; };
 		40FE966113808D35004E9569 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 40FE966013808D35004E9569 /* Entitlements.plist */; };
+		DDC062581533FB4D006CF10E /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DDC062571533FB4D006CF10E /* libz.1.2.5.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,7 +124,6 @@
 		405341FA137789AD00185BF5 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		405341FC137789B300185BF5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		405341FE137789BD00185BF5 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		40534201137789E000185BF5 /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
 		40649B8013897DF100347DFC /* ItemBackgroundPattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ItemBackgroundPattern.png; path = Resources/ItemBackgroundPattern.png; sourceTree = "<group>"; };
 		40891AF4137A81100064ED35 /* DocumentUITableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocumentUITableViewCell.h; path = View/DocumentUITableViewCell.h; sourceTree = "<group>"; };
 		40891AF5137A81100064ED35 /* DocumentUITableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocumentUITableViewCell.m; path = View/DocumentUITableViewCell.m; sourceTree = "<group>"; };
@@ -135,6 +134,7 @@
 		40E794F4139441C000E767FC /* Presentable Icon iPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Presentable Icon iPhone.png"; path = "Resources/Presentable Icon iPhone.png"; sourceTree = "<group>"; };
 		40EF59F2138887AC0070E739 /* FolderTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = FolderTab.png; path = Resources/FolderTab.png; sourceTree = "<group>"; };
 		40FE966013808D35004E9569 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Entitlements.plist; path = "Supporting Files/Entitlements.plist"; sourceTree = "<group>"; };
+		DDC062571533FB4D006CF10E /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,9 +142,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDC062581533FB4D006CF10E /* libz.1.2.5.dylib in Frameworks */,
 				408EF0A3137F965C00FD9FD2 /* QuartzCore.framework in Frameworks */,
 				404CB1D013778A9500D6773E /* CoreGraphics.framework in Frameworks */,
-				40534202137789E000185BF5 /* libz.1.2.3.dylib in Frameworks */,
 				405341FF137789BD00185BF5 /* MobileCoreServices.framework in Frameworks */,
 				405341FD137789B300185BF5 /* SystemConfiguration.framework in Frameworks */,
 				405341FB137789AD00185BF5 /* CFNetwork.framework in Frameworks */,
@@ -181,7 +181,7 @@
 		4018C0331375010A00DEEB44 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				40534201137789E000185BF5 /* libz.1.2.3.dylib */,
+				DDC062571533FB4D006CF10E /* libz.1.2.5.dylib */,
 				405341FA137789AD00185BF5 /* CFNetwork.framework */,
 				4018C03A1375010A00DEEB44 /* CoreData.framework */,
 				404CB1CF13778A9500D6773E /* CoreGraphics.framework */,
@@ -408,6 +408,7 @@
 		4018C0271375010900DEEB44 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = Personal;
 			};
 			buildConfigurationList = 4018C02A1375010900DEEB44 /* Build configuration list for PBXProject "Presentable" */;
